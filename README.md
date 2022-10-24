@@ -3,9 +3,12 @@
 
 
 # 사용방법
-원하는 방식대로 가사를 작성하신 후, **`formatting.exe`의 위치에 `kasi.txt`를 같이 두신 후에 `formatting.exe`를 실행**하시면 `kasi.txt`의 서식이 바뀝니다.
+`kasi.txt` 텍스트 파일에 원하는 방식대로 가사를 작성하신 후에 **`vocaro_formatting.exe`를 실행하시면 `kasi.txt`의 서식이 바뀝니다.
 
 **꼭 한 폴더 내에 `formatting.exe`와 `kasi.txt`가 같이 있어야 합니다.**
+
+이 실행 파일은 개행의 삭제 및 수직선 기호(vertical bar/pipe) `||  ||`를 글 양옆에 추가해 줍니다.
+그 외의 형식은 제대로 동작하지 않을 수 있습니다.
 
 
 # 예시
