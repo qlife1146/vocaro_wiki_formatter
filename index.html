@@ -14,19 +14,34 @@
             h3 {
                 width: 50%;
             }
+            h4 {
+                width: 50%;
+                color: #39c5bb;
+            }
+            a:link {
+                color: #39c5bb; text-decoration: none;
+            }
+            a:visited {
+                color: #39c5bb; text-decoration: none;
+            }
+            a:hover {
+                color: #39c5bb; text-decoration: underline;
+            }
         </style>
         <script src="reformatting.jsp"></script>
     </head>
     <body>
         <form>
-            <h2 style="margin-bottom: 0">보카로 위키 번역자 툴</h2>
-            <h3 style="margin-top: 0; text-align: right">v1.0.1</h3>
+            <h2 style="margin-bottom: 0"><a href="http://vocaro.wikidot.com/">보카로 가사 위키 번역가 툴</a></h2>
+            <h4 style="margin-top: 0; text-align: right">v1.0.3</h3>
 
             원본 가사
             <br />
             <textarea id="kasi" placeholder="가사 입력해 주세요."></textarea>
         </form>
         <button onclick="change()">변환</button>
+        <button onclick="reset()">초기화</button>
+        <button onclick="redo()">되돌리기</button>
         <br />
         <br />
         <form>
@@ -40,4 +55,5 @@
         </form>
         <button onclick="copy()">클립보드로 복사</button>
     </body>
+    <button onclick="debug()">debug</button>
 </html>
