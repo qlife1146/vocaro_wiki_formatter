@@ -41,13 +41,21 @@
 ## 구성 설명(압축 해제 후)
 
 `kasi.txt`: 가사를 작성하는 텍스트 파일. 잃어버려도 같은 이름으로 만들면 된다.
+
 `formatting.exe`: `kasi.txt`안에 있는 가사에 서식을 추가해 주는 실행 파일.
 
 ## 사용방법
 
 [다운로드](https://github.com/qlife1146/vocaro_wiki_formatter/releases/tag/v1.0,) 혹은 오른쪽의 `Release` 밑에 `x.x 배포판`에 들어가 `Assets` 밑에 `vocaro_formatting_x.x.zip`를 받으시고 압축을 해제합니다.
 
-윈도우즈 버튼 -> 설정 -> 바이러스 및 위협 방지 -> 바이러스 및 위협 방지 설정: 설정 관리 -> 제외: 제외 추가 또는 제거 -> 제외 사항 추가 -> 파일 -> `formatting.exe`을 찾아서 추가
+1. 윈도우즈 버튼
+2. 설정
+3. 바이러스 및 위협 방지
+4. 바이러스 및 위협 방지 설정: 설정 관리
+5. 제외: 제외 추가 또는 제거
+6. 제외 사항 추가
+7. 파일
+8. `formatting.exe`을 찾아서 추가
 (최초 1회만 하면 됩니다.)
 
 `kasi.txt` 텍스트 파일에 원하는 방식대로 가사를 작성하고 저장한 후에 `vocaro_formatting.exe`를 실행하면 `kasi.txt`의 서식이 바뀝니다.
