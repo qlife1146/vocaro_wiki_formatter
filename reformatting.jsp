@@ -1,6 +1,9 @@
 var kasiBox_tmp = "";
 var comBox_tmp = "";
 
+window.onload = function () {
+    document.getElementById("debug_button").style.display = "none";
+};
 function change() {
     var kasiBox = document.getElementById("kasi");
     var comBox = document.getElementById("complete");
@@ -16,6 +19,10 @@ function change() {
     for (var i = 0; i < result.length; i++) {
         var text = "";
         comBox.value += "|| " + result[i] + " ||\n";
+    }
+
+    if (kasiBox.value == "DEBUG") {
+        document.getElementById("debug_button").style.display = "block";
     }
 }
 
