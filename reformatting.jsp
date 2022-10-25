@@ -9,6 +9,7 @@ function change() {
         }
     }
 
+    comBox.value = "";
     for (var i = 0; i < result.length; i++) {
         var text = "";
         comBox.value += "|| " + result[i] + " ||\n";
