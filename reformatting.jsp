@@ -14,6 +14,4 @@ function change() {
         var text = "";
         comBox.value += "|| " + result[i] + " ||\n";
     }
-
-    console.log(result);
 }
