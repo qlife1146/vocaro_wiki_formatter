@@ -50,7 +50,6 @@
 [다운로드](https://github.com/qlife1146/vocaro_wiki_formatter/releases/tag/v1.0,) 혹은 오른쪽의 `Release` 밑에 `x.x 배포판`에 들어가 `Assets` 밑에 `vocaro_formatting_x.x.zip`를 받으시고 압축을 해제합니다.
 
 격리 해제
-
 1. 윈도우즈 버튼
 2. 설정
 3. 바이러스 및 위협 방지
@@ -59,7 +58,7 @@
 6. 제외 사항 추가
 7. 파일
 8. `formatting.exe`을 찾아서 추가
-   (최초 1회만 하면 됩니다.)
+(최초 1회만 하면 됩니다.)
 
 `kasi.txt` 텍스트 파일에 원하는 방식대로 가사를 작성하고 저장한 후에 `vocaro_formatting.exe`를 실행하면 `kasi.txt`의 서식이 바뀝니다.
 **꼭 한 폴더 내에 `vocaro_formatting.exe`와 `kasi.txt`가 같이 있어야 합니다.**
