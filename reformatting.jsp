@@ -15,3 +15,8 @@ function change() {
         comBox.value += "|| " + result[i] + " ||\n";
     }
 }
+
+function copy() {
+    var comBox = document.getElementById("complete");
+    navigator.clipboard.writeText(comBox.value);
+}
