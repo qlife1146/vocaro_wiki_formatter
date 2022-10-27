@@ -1,0 +1,105 @@
+@charset 'utf-8';
+@import url(https://fonts.googleapis.com/css?family=Noto+Sans+JP|Noto+Sans+KR);
+
+/* Layout */
+
+body {
+    font-family: 'Noto Sans JP','Noto Sans KR',나눔고딕,sans-serif;
+    font-size: 0.82em;
+    text-align: center;
+}
+
+article {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+/* Header */
+
+h2, h3, h4 {
+    width: 100%;
+}
+
+h2.title {
+    font-size: 2em;
+    margin: 0 auto;
+}
+
+h2.title a {
+	text-decoration: none;
+	color: #ba003c;
+}
+
+h4.version {
+    text-align:  right;
+    margin: 0 auto;
+}
+
+/* Article */
+.textarea, .buttons {
+	display: inline-flex;
+	width: 100%;
+	justify-content: center;
+}
+
+.textarea form {
+	flex: 3 3 100%;
+}
+
+.textarea form p {
+    text-align: left;
+}
+
+.textarea textarea {
+	transition: .2s cubic-bezier(.42, 0, .03, .96);
+	width: 90vw;
+	height: 15em;
+	border: none;
+	border-radius: 0.3em;
+	padding: 1em;
+	background-color: hsl(220deg 100% 70% / 30%);
+}
+
+.textarea textarea:focus {
+	transition: .2s cubic-bezier(.42, 0, .03, .96);
+	border: 1px #fff solid;
+}
+
+button {
+	min-width: 6em;
+	height: 3em;
+	margin: 1em;
+	box-shadow: 1px 1px 3px #ccc;
+	background-color: #6799ff;
+	border: 0.2em #fff solid;
+	border-radius: 0.3em;
+	color: #fff;
+}
+
+button:hover {
+	transition: .2s cubic-bezier(.42, 0, .03, .96);
+    box-shadow: 2px 2px 5px #333;
+    background-color: #0055ee;
+}
+
+button.copy {
+}
+
+/* Scrollbar */
+
+::-webkit-scrollbar {
+    width: 9px;
+    height: 9px;
+    border: 1px solid rgba(0,0,0,.1);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(50,50,50,.3);
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0,0,0,.1);
+}
