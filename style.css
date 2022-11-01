@@ -4,28 +4,30 @@
 /* Layout */
 
 body {
-    font-family: 'Noto Sans JP','Noto Sans KR',나눔고딕,sans-serif;
-    font-size: 0.82em;
-    text-align: center;
+	font-family: 'Noto Sans JP', 'Noto Sans KR', 나눔고딕, sans-serif;
+	font-size: 0.82em;
+	text-align: center;
 }
 
 article {
-    display: flex;
-    align-items: center;
-    justify-items: center;
-    width: 100%;
-    flex-wrap: wrap;
+	display: flex;
+	align-items: center;
+	justify-items: center;
+	width: 100%;
+	flex-wrap: wrap;
 }
 
 /* Header */
 
-h2, h3, h4 {
-    width: 100%;
+h2,
+h3,
+h4 {
+	width: 100%;
 }
 
 h2.title {
-    font-size: 2em;
-    margin: 0 auto;
+	font-size: 2em;
+	margin: 0 auto;
 }
 
 h2.title a {
@@ -34,12 +36,13 @@ h2.title a {
 }
 
 h4.version {
-    text-align:  right;
-    margin: 0 auto;
+	text-align: right;
+	margin: 0 auto;
 }
 
 /* Article */
-.textarea, .buttons {
+.textarea,
+.buttons {
 	display: inline-flex;
 	width: 100%;
 	justify-content: center;
@@ -50,7 +53,7 @@ h4.version {
 }
 
 .textarea form p {
-    text-align: left;
+	text-align: left;
 }
 
 .textarea textarea {
@@ -81,25 +84,24 @@ button {
 
 button:hover {
 	transition: .2s cubic-bezier(.42, 0, .03, .96);
-    box-shadow: 2px 2px 5px #333;
-    background-color: #0055ee;
+	box-shadow: 2px 2px 5px #333;
+	background-color: #0055ee;
 }
 
-button.copy {
-}
+button.copy {}
 
 /* Scrollbar */
 
 ::-webkit-scrollbar {
-    width: 9px;
-    height: 9px;
-    border: 1px solid rgba(0,0,0,.1);
+	width: 9px;
+	height: 9px;
+	border: 1px solid rgba(0, 0, 0, .1);
 }
 
 ::-webkit-scrollbar-thumb {
-    background: rgba(50,50,50,.3);
+	background: rgba(50, 50, 50, .3);
 }
 
 ::-webkit-scrollbar-track {
-    background: rgba(0,0,0,.1);
+	background: rgba(0, 0, 0, .1);
 }

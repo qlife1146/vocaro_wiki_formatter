@@ -22,48 +22,50 @@ function change() {
         }
     }
 
-    console.log(result)
+    console.log(result);
     // result = result.toString().replace(/원본/g, "수정");
     var replaced_result = [];
     for (var i = 0; i < result.length; i++) {
-        replaced_result.push(result[i]
-        .replace(/챠/g, "차")
-        .replace(/챤/g, "찬")
-        .replace(/챳/g, "찻")
-        .replace(/츄/g, "추")
-        .replace(/츈/g, "춘")
-        .replace(/츗/g, "춧")
-        .replace(/쵸/g, "초")
-        .replace(/쵼/g, "촌")
-        .replace(/춋/g, "촛")
-        .replace(/쟈/g, "자")
-        .replace(/쟌/g, "잔")
-        .replace(/쟛/g, "잣")
-        .replace(/쥬/g, "주")
-        .replace(/쥰/g, "준")
-        .replace(/쥿/g, "줏")
-        .replace(/죠/g, "조")
-        .replace(/죤/g, "존")
-        .replace(/죳/g, "좃")
+        replaced_result.push(
+            result[i]
+                .replace(/챠/g, "차")
+                .replace(/챤/g, "찬")
+                .replace(/챳/g, "찻")
+                .replace(/츄/g, "추")
+                .replace(/츈/g, "춘")
+                .replace(/츗/g, "춧")
+                .replace(/쵸/g, "초")
+                .replace(/쵼/g, "촌")
+                .replace(/춋/g, "촛")
+                .replace(/쟈/g, "자")
+                .replace(/쟌/g, "잔")
+                .replace(/쟛/g, "잣")
+                .replace(/쥬/g, "주")
+                .replace(/쥰/g, "준")
+                .replace(/쥿/g, "줏")
+                .replace(/죠/g, "조")
+                .replace(/죤/g, "존")
+                .replace(/죳/g, "좃")
         );
     }
-    console.log(replaced_result)
+    console.log(replaced_result);
 
     comBox.value = "";
     for (var i = 0; i < replaced_result.length; i++) {
-        console.log(replaced_result.length)
+        console.log(replaced_result.length);
         if (i < replaced_result.length) {
             comBox.value += "|| " + replaced_result[i] + " ||\n";
-        }
-        else {
+        } else {
             comBox.value += "|| " + replaced_result[i] + " ||";
         }
     }
 }
 function copy() {
     var comBox = document.getElementById("complete");
+    //최신 방식이나 적용이 안되어
     // navigator.clipboard.writeText(comBox.value);
 
+    //옛날 방식
     comBox.select();
     comBox.setSelectionRange(0, 99999);
     document.execCommand("copy");
