@@ -2,7 +2,7 @@ var kasiBox_tmp = "";
 var comBox_tmp = "";
 
 window.onload = function () {
-    var version = "v1.0.4"; //버전 관리
+    var version = "v1.1.1"; //버전 관리
     document.getElementById("debug_button").style.display = "none";
     document.getElementById(
         "version"
