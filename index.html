@@ -3,71 +3,39 @@
     <head>
         <meta charset="UTF-8" />
         <title>보카로 위키 형식 변경</title>
-        <style>
-            textarea {
-                width: 50%;
-                height: 100px;
-            }
-            h2 {
-                width: 50%;
-            }
-            h3 {
-                width: 50%;
-            }
-            h4 {
-                width: 50%;
-                color: #39c5bb;
-            }
-            a:link {
-                color: #39c5bb;
-                text-decoration: none;
-            }
-            a:visited {
-                color: #39c5bb;
-                text-decoration: none;
-            }
-            a:hover {
-                color: #39c5bb;
-                text-decoration: underline;
-            }
-        </style>
+        <link rel="stylesheet" type="text/css" href="style.css">
         <script src="reformatting.jsp"></script>
-    </head>
-    <body>
-        <form>
-            <!-- <h2 style="margin-bottom: 0"><a href="http://vocaro.wikidot.com/">보카로 가사 위키 번역가 툴</a></h2>
-            <h4 style="margin-top: 0; text-align: right">v1.0.3</h3> -->
-            <h2>보카로 가사 위키 번역가 툴</h2>
-            <!-- 버전 관리를 js로 변환. -->
+        <header>
+            <h2 class="title">보카로 가사 위키 번역가 툴</h2>
             <h4 id="version"></h4>
-
-            원본 가사
+        </header>
+        <article>
+            <div class="textarea">
+                <form>
+                    <p>원본 가사</p>
+                    <textarea id="kasi" placeholder="가사를 입력해 주세요."></textarea>
+                </form>
+            </div>
+            <div class="buttons">
+            <button onclick="change()" class="change">변환</button>
+            <button onclick="reset()" class="reset">초기화</button>
+            <button onclick="redo()" class="redo">되돌리기</button>
+            </div>
             <br />
-            <textarea id="kasi" placeholder="가사 입력해 주세요."></textarea>
-        </form>
-        <button onclick="change()">변환</button>
-        <button onclick="reset()">초기화</button>
-        <button onclick="redo()">되돌리기</button>
-        <br />
-        <br />
-        <form>
-            완성 가사
-            <br />
-            <textarea
-                id="complete"
-                placeholder="완성된 가사가 나오는 창입니다."
-                readonly
-            ></textarea>
-        </form>
-        <button onclick="copy()">클립보드로 복사</button>
-        <br />
-        ※ 가나 대조표에 맞춰 오타가 수정됩니다(예: 쟌 → 잔).<br />다만 단순 글자
-        비교이기에 외래어에는 대응하지 않습니다. 주의 바랍니다.
-        <br />자세한 사항은
-        <a
-            href="https://github.com/qlife1146/vocaro_wiki_formatter#%EC%B9%98%EA%B2%BD%EA%B5%AC%EA%B0%9C%EC%9D%8C-%EB%8B%A4%EC%9D%8C%EC%9D%98-%EA%B2%BD%EA%B5%AC%EA%B0%9C-%EC%A0%91%EA%B7%BC%EC%9D%8C-%EC%98%A4%ED%83%80-%EC%88%98%EC%A0%95%EC%97%90-%EB%8C%80%EC%9D%91%ED%95%98%EB%8A%94-%EB%B0%9C%EC%9D%8C-%EC%A0%95%EB%A6%AC"
-             style="font-weight: bold; text-decoration: underline">링크</a
-        >를 확인해 주세요.
+            <div class="textarea">
+            <form>
+                <p>완성 가사</p>
+                <textarea id="complete" placeholder="완성된 가사가 나오는 창입니다." readonly></textarea>
+            </form>
+            </div>
+            <div class="buttons">
+                <button onclick="copy()" class="copy">클립보드로 복사</button>
+            </div>
+            <p>※ 가나 대조표에 맞춰 오타가 수정됩니다(예: 쟌 → 잔).<br />다만 단순 글자 비교이기에 외래어에는 대응하지 않습니다. 주의 바랍니다.
+                <br />자세한 사항은
+                <a href="https://github.com/qlife1146/vocaro_wiki_formatter#%EC%B9%98%EA%B2%BD%EA%B5%AC%EA%B0%9C%EC%9D%8C-%EB%8B%A4%EC%9D%8C%EC%9D%98-%EA%B2%BD%EA%B5%AC%EA%B0%9C-%EC%A0%91%EA%B7%BC%EC%9D%8C-%EC%98%A4%ED%83%80-%EC%88%98%EC%A0%95%EC%97%90-%EB%8C%80%EC%9D%91%ED%95%98%EB%8A%94-%EB%B0%9C%EC%9D%8C-%EC%A0%95%EB%A6%AC" target="_blank" style="font-weight: bold; text-decoration: underline">링크</a>를 확인해 주세요.
+            </p>
+        </article>
     </body>
     <button id="debug_button" onclick="debug()">debug</button>
 </html>
