@@ -5,11 +5,9 @@
         <title>보카로 위키 형식 변경</title>
         <link rel="stylesheet" type="text/css" href="style.css">
         <script src="reformatting.jsp"></script>
-    </head>
-    <body>
         <header>
-            <h2 class="title"><a href="http://vocaro.wikidot.com/">보카로 가사 위키 번역가 툴</a></h2>
-            <h4 class="version">v1.0.4</h4>
+            <h2 class="title">보카로 가사 위키 번역가 툴</h2>
+            <h4 id="version"></h4>
         </header>
         <article>
             <div class="textarea">
@@ -27,21 +25,17 @@
             <div class="textarea">
             <form>
                 <p>완성 가사</p>
-                <textarea
-                    id="complete"
-                    placeholder="완성된 가사가 나오는 창입니다."
-                    readonly
-                ></textarea>
+                <textarea id="complete" placeholder="완성된 가사가 나오는 창입니다." readonly></textarea>
             </form>
             </div>
             <div class="buttons">
                 <button onclick="copy()" class="copy">클립보드로 복사</button>
             </div>
+            <p>※ 가나 대조표에 맞춰 오타가 수정됩니다(예: 쟌 → 잔).<br />다만 단순 글자 비교이기에 외래어에는 대응하지 않습니다. 주의 바랍니다.
+                <br />자세한 사항은
+                <a href="https://github.com/qlife1146/vocaro_wiki_formatter#%EC%B9%98%EA%B2%BD%EA%B5%AC%EA%B0%9C%EC%9D%8C-%EB%8B%A4%EC%9D%8C%EC%9D%98-%EA%B2%BD%EA%B5%AC%EA%B0%9C-%EC%A0%91%EA%B7%BC%EC%9D%8C-%EC%98%A4%ED%83%80-%EC%88%98%EC%A0%95%EC%97%90-%EB%8C%80%EC%9D%91%ED%95%98%EB%8A%94-%EB%B0%9C%EC%9D%8C-%EC%A0%95%EB%A6%AC" target="_blank" style="font-weight: bold; text-decoration: underline">링크</a>를 확인해 주세요.
+            </p>
         </article>
-        <footer>
-            <p>Created by 바이올렛<br />
-            Modified by Devan</p>
-        </footer>
     </body>
     <button id="debug_button" onclick="debug()">debug</button>
 </html>
