@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <title>보카로 위키 형식 변경</title>
         <link rel="stylesheet" type="text/css" href="style.css">
-        <script src="reformatting.jsp"></script>
+        <script async src="reformatting.jsp"></script>
         <header>
             <h2 class="title">보카로 가사 위키 번역가 툴</h2>
             <h4 id="version"></h4>
@@ -17,11 +17,12 @@
                 </form>
             </div>
             <div class="buttons">
-            <button onclick="change()" class="change">변환</button>
+            <button onclick="change()" accesskey="Enter" class="change">변환</button>
             <button onclick="reset()" class="reset">초기화</button>
             <button onclick="redo()" class="redo">되돌리기</button>
             </div>
-            <br />
+            <br>
+            <a style="text-align: center;">ctrl+space로도 변환이 가능합니다.</a>
             <div class="textarea">
             <form>
                 <p>완성 가사</p>
@@ -37,5 +38,5 @@
             </p>
         </article>
     </body>
-    <button id="debug_button" onclick="debug()">debug</button>
+    <!-- <button id="debug_button" onclick="debug()">debug</button> -->
 </html>
