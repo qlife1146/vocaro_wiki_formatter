@@ -80,7 +80,7 @@ function change() {
 
     //완성형: comBox 안에 한 줄씩 입력됨.
     comBox.value = "";
-    for (var i = 0; i < replaced_result.length; 근i++) {
+    for (var i = 0; i < replaced_result.length; i++) {
         //replaced_result.length = 입력된 글의 줄 수
         if (i < replaced_result.length) {
             comBox.value += "|| " + replaced_result[i] + " ||\n";
@@ -88,14 +88,13 @@ function change() {
             comBox.value += "|| " + replaced_result[i] + " ||";
         }
     }
+    console.log("change complete")
     return comBox.value;
 }
 
 function info_add() {
     var kasiBox = document.getElementById("kasi"); //원본 텍박
     var comBox = document.getElementById("complete"); //완성 텍박
-
-    var tmp = change(kasiBox);
 
     var song_title = document.getElementById("song_title").value;
     var video_type = document.getElementById("video_type").value;
@@ -143,6 +142,7 @@ function info_add() {
         video_x = "\n"
     }
 
+    var tmp = change(kasiBox);
     var guide_title =
         "+ 정보\n"+
         "[[include component:info-table-start\n" +
