@@ -104,11 +104,8 @@ function info_add() {
     var vocaro = document.getElementById("vocaro").value;
     var vocaro_box = document.getElementById("vocaro_etc").value;
 
-    song_title.replace(" ", "");
     video_type.replace(" ", "");
     video_id.replace(" ", "");
-    composer.replace(" ", "");
-    writer.replace(" ", "");
     vocaro.replace(" ", "");
     vocaro_box.replace(" ", "");
     
