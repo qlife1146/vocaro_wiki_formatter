@@ -112,10 +112,7 @@ function info_add() {
     writer.replace(" ", "");
     vocaro.replace(" ", "");
     vocaro_box.replace(" ", "");
-
-    console.log(vocaro)
-    console.log(vocaro_box)
-
+    
     if (vocaro == "etc") {
         vocaro = document.getElementById("vocaro_etc").value;
     }
