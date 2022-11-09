@@ -3,38 +3,88 @@
     <head>
         <meta charset="UTF-8" />
         <title>보카로 위키 형식 변경</title>
-        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="stylesheet" type="text/css" href="style.css" />
         <script async src="reformatting.jsp"></script>
         <header>
             <h2 class="title">보카로 가사 위키 번역가 툴</h2>
             <h4 id="version"></h4>
         </header>
+    </head>
+    <body>
         <article>
             <div class="textarea">
                 <form>
+                    <p>제목</p>
+                    <input type="text" id="song_title" placeholder="한국어 제목" autocomplete="off"/>
+                    <p>비디오 타입</p>
+                    <select id="video_type">
+                        <option value="" selected>선택</option>
+                        <option value="nicovideo">니코동</option>
+                        <option value="youtube">유튜브</option>
+                        <option value="novideo">외부링크 X</option>
+                        <option value="false">영상 없음</option>
+                    </select>
+                    <p>영상 아이디</p>
+                    <input type="text" id="video_id" autocomplete="off"/>
+
+                    <p>작곡가</p>
+                    <input type="text" id="composer" autocomplete="off"/>
+
+                    <p>작사가</p>
+                    <input type="text" id="writer" autocomplete="off"/>
+
+                    <p>보컬</p>
+                    <select id="vocaro" onchange="vocaro_realtime()">
+                        <option value="" selected>보카로 선택</option>
+                        <option value="hastune-miku">하츠네 미쿠</option>
+                        <option value="kagamine-rin">카가미네 린</option>
+                        <option value="megurine-luka">카가미네 렌</option>
+                        <option value="meiko">MEIKO</option>
+                        <option value="kaito">KAITO</option>
+                        <option value="etc">기타(직접 입력)</option>
+                    </select>
+                    <input type="text" id="vocaro_etc" placeholder="직접 입력" autocomplete="off">
+
                     <p>원본 가사</p>
-                    <textarea id="kasi" placeholder="가사를 입력해 주세요."></textarea>
+                    <textarea
+                        id="kasi"
+                        placeholder="가사를 입력해 주세요."
+                    ></textarea>
                 </form>
             </div>
             <div class="buttons">
-            <button onclick="change()" accesskey="Enter" class="change">변환</button>
-            <button onclick="reset()" class="reset">초기화</button>
-            <button onclick="redo()" class="redo">되돌리기</button>
+                <button onclick="change()" accesskey="Enter" class="change">
+                    변환
+                </button>
+                <button onclick="reset()" class="reset">초기화</button>
+                <button onclick="redo()" class="redo">되돌리기</button>
+                <button onclick="info_add()" class="info_add">정보까지 완성</button>
             </div>
-            <br>
-            <a style="text-align: center;">ctrl+space로도 변환이 가능합니다.</a>
+            <br />
+            <a style="text-align: center">ctrl+space로도 변환이 가능합니다.</a>
             <div class="textarea">
-            <form>
-                <p>완성 가사</p>
-                <textarea id="complete" placeholder="완성된 가사가 나오는 창입니다." readonly></textarea>
-            </form>
+                <form>
+                    <p>완성 가사</p>
+                    <textarea
+                        id="complete"
+                        placeholder="완성된 가사가 나오는 창입니다."
+                        readonly
+                    ></textarea>
+                </form>
             </div>
             <div class="buttons">
                 <button onclick="copy()" class="copy">클립보드로 복사</button>
             </div>
-            <p>※ 가나 대조표에 맞춰 오타가 수정됩니다(예: 쟌 → 잔).<br />다만 단순 글자 비교이기에 외래어에는 대응하지 않습니다. 주의 바랍니다.
-                <br />자세한 사항은
-                <a href="https://github.com/qlife1146/vocaro_wiki_formatter#%EC%B9%98%EA%B2%BD%EA%B5%AC%EA%B0%9C%EC%9D%8C-%EB%8B%A4%EC%9D%8C%EC%9D%98-%EA%B2%BD%EA%B5%AC%EA%B0%9C-%EC%A0%91%EA%B7%BC%EC%9D%8C-%EC%98%A4%ED%83%80-%EC%88%98%EC%A0%95%EC%97%90-%EB%8C%80%EC%9D%91%ED%95%98%EB%8A%94-%EB%B0%9C%EC%9D%8C-%EC%A0%95%EB%A6%AC" target="_blank" style="font-weight: bold; text-decoration: underline">링크</a>를 확인해 주세요.
+            <p>
+                ※ 가나 대조표에 맞춰 오타가 수정됩니다(예: 쟌 → 잔).<br />다만
+                단순 글자 비교이기에 외래어에는 대응하지 않습니다. 주의
+                바랍니다. <br />자세한 사항은
+                <a
+                    href="https://github.com/qlife1146/vocaro_wiki_formatter#%EC%B9%98%EA%B2%BD%EA%B5%AC%EA%B0%9C%EC%9D%8C-%EB%8B%A4%EC%9D%8C%EC%9D%98-%EA%B2%BD%EA%B5%AC%EA%B0%9C-%EC%A0%91%EA%B7%BC%EC%9D%8C-%EC%98%A4%ED%83%80-%EC%88%98%EC%A0%95%EC%97%90-%EB%8C%80%EC%9D%91%ED%95%98%EB%8A%94-%EB%B0%9C%EC%9D%8C-%EC%A0%95%EB%A6%AC"
+                    target="_blank"
+                    style="font-weight: bold; text-decoration: underline"
+                    >링크</a
+                >를 확인해 주세요.
             </p>
         </article>
     </body>
