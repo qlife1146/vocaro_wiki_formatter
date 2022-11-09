@@ -22,15 +22,14 @@
                         autocomplete="off"
                     />
                     <p>비디오 타입</p>
-                    <select id="video_type">
-                        <option value="" selected>선택</option>
-                        <option value="nicovideo">니코동</option>
+                    <select id="video_type" onchange="type_realtime()">
+                        <option value="nicovideo" selected>니코동</option>
                         <option value="youtube">유튜브</option>
                         <option value="novideo">외부링크 X</option>
                         <option value="false">영상 없음</option>
                     </select>
                     <p>영상 아이디</p>
-                    <input type="text" id="video_id" autocomplete="off" />
+                    <input type="text" id="video_id" autocomplete="off" placeholder="영상 아이디"/>
 
                     <p>작곡가</p>
                     <input
@@ -51,10 +50,9 @@
                         작곡가/작사가 양식은
                         <b>[[[artist:영어 이름|한글 이름]]]</b>입니다.
                     </p>
-                    <p>보컬</p>
+                    <p>가수</p>
                     <select id="vocaro" onchange="vocaro_realtime()">
-                        <option value="" selected>보카로 선택</option>
-                        <option value="hastune-miku">하츠네 미쿠</option>
+                        <option value="hastune-miku" selected>하츠네 미쿠</option>
                         <option value="kagamine-rin">카가미네 린</option>
                         <option value="v-flower">v flower</option>
                         <option value="kagamine-len">카가미네 렌</option>
@@ -66,7 +64,6 @@
                     <input
                         type="text"
                         id="vocaro_etc"
-                        placeholder="직접 입력"
                         autocomplete="off"
                     />
 
