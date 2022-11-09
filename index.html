@@ -15,7 +15,12 @@
             <div class="textarea">
                 <form>
                     <p>제목</p>
-                    <input type="text" id="song_title" placeholder="한국어 제목" autocomplete="off"/>
+                    <input
+                        type="text"
+                        id="song_title"
+                        placeholder="한국어 제목"
+                        autocomplete="off"
+                    />
                     <p>비디오 타입</p>
                     <select id="video_type">
                         <option value="" selected>선택</option>
@@ -25,25 +30,45 @@
                         <option value="false">영상 없음</option>
                     </select>
                     <p>영상 아이디</p>
-                    <input type="text" id="video_id" autocomplete="off"/>
+                    <input type="text" id="video_id" autocomplete="off" />
 
                     <p>작곡가</p>
-                    <input type="text" id="composer" autocomplete="off"/>
+                    <input
+                        type="text"
+                        id="composer"
+                        autocomplete="off"
+                        value="[[[artist:영어 이름|한글 이름]]]"
+                    />
 
                     <p>작사가</p>
-                    <input type="text" id="writer" autocomplete="off"/>
-
+                    <input
+                        type="text"
+                        id="writer"
+                        autocomplete="off"
+                        value="[[[artist:영어 이름|한글 이름]]]"
+                    />
+                    <p>
+                        작곡가/작사가 양식은
+                        <b>[[[artist:영어 이름|한글 이름]]]</b>입니다.
+                    </p>
                     <p>보컬</p>
                     <select id="vocaro" onchange="vocaro_realtime()">
                         <option value="" selected>보카로 선택</option>
                         <option value="hastune-miku">하츠네 미쿠</option>
                         <option value="kagamine-rin">카가미네 린</option>
-                        <option value="megurine-luka">카가미네 렌</option>
-                        <option value="meiko">MEIKO</option>
-                        <option value="kaito">KAITO</option>
+                        <option value="v-flower">v flower</option>
+                        <option value="kagamine-len">카가미네 렌</option>
+                        <option value="megurine-luka">메구리네 루카</option>
+                        <option value="kafu">카후</option>
+                        <option value="otomachi-una">오토마치 우나</option>
                         <option value="etc">기타(직접 입력)</option>
                     </select>
-                    <input type="text" id="vocaro_etc" placeholder="직접 입력" autocomplete="off">
+                    <input
+                        type="text"
+                        id="vocaro_etc"
+                        placeholder="직접 입력"
+                        autocomplete="off"
+                    />
 
                     <p>원본 가사</p>
                     <textarea
@@ -58,11 +83,16 @@
                 </button>
                 <button onclick="reset()" class="reset">초기화</button>
                 <button onclick="redo()" class="redo">되돌리기</button>
-                <button onclick="info_add()" class="info_add">정보까지 완성</button>
+                <button onclick="info_add()" class="info_add">
+                    정보까지 완성
+                </button>
             </div>
             <br />
-            <a style="text-align: center">ctrl+space로도 변환이 가능합니다.</a>
-            <a style="text-align: center">꼭 미리보기를 통해 작곡가/작사가/가수의 링크가 제대로 작동하는지 확인해 주세요.</a>
+            <p>ctrl+space로도 변환이 가능합니다.</p>
+            <p>
+                꼭 미리보기를 통해 작곡가/작사가/가수의 링크가 제대로 작동하는지
+                확인해 주세요.
+            </p>
             <div class="textarea">
                 <form>
                     <p>완성 가사</p>

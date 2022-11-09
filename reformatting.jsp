@@ -127,27 +127,23 @@ function info_add() {
         '    [[hcell class="composer-cell"]] 작곡 [[/hcell]]\n' +
         "    [[cell]]\n" +
         "        " +
-        "[[" +
         composer +
-        "]]" +
         "\n" +
         "    [[/cell]]\n" +
         "[[/row]][[row]]\n" +
         '    [[hcell class="writer-cell"]] 작사 [[/hcell]]\n' +
         "    [[cell]]\n" +
         "        " +
-        "[[" +
         writer +
-        "]]" +
         "\n" +
         "    [[/cell]]\n" +
         "[[/row]][[row]]\n" +
         '[[hcell class="vocaro-cell"]] 노래 [[/hcell]]\n' +
         "    [[cell]]\n" +
         "        " +
-        "[[" +
+        "[[[" +
         vocaro +
-        "|]]" +
+        "|]]]" +
         "\n" +
         "    [[/cell]]\n" +
         "[[/row]]\n[[include component:info-table-end]]\n\n" +
