@@ -12,8 +12,8 @@ document.addEventListener('keydown', function (event) {
 
 window.onload = function () {
 	//버전관리 부분
-	//1.1.4(22.11.10~): 코드 조정
-	const version = 'v1.1.3.1'; //버전 관리 함수
+	//1.1.4(22.11.10~): 코드 조정 및 보컬로이드 검색에 자동완성 도입
+	const version = 'v1.1.4'; //버전 관리 변수
 	document.getElementById('version').innerHTML = `<h4 class='version' id='version'>${version}</h4`;
 
 	//input_text의 display 여부
@@ -73,13 +73,11 @@ function formatting_with_information() {
 	let video_id_text = document.getElementById('video_id_textbox').value;
 	let composer_text = document.getElementById('composer_textbox').value;
 	let writer_text = document.getElementById('writer_textbox').value;
-	let vocaro_text = document.getElementById('vocaro_select').value;
-	let vocaro_etc_text = document.getElementById('vocaro_etc_textbox').value;
+	let vocaro_text = document.getElementById('vocaro_textbox').value;
 
 	video_type_text = video_type_text.replace(/ /g, '');
 	video_id_text = video_id_text.replace(/ /g, '');
 	vocaro_text = vocaro_text.replace(/ /g, '');
-	vocaro_etc_text = vocaro_etc_text.replace(/ /g, '');
 
 
 	let alert_list = [];
@@ -91,7 +89,7 @@ function formatting_with_information() {
 	} else {
 		info_format += '|title=' + song_title_text +'\n'
 	}
-	if (video_type_text == ('nicovideo' || 'youtube')) {
+	if (video_type_text == 'nicovideo' || video_type_text == 'youtube') {
 		if (video_id_text == '') {
 			alert_list.push('영상 아이디 없음');
 		} else {
@@ -99,7 +97,7 @@ function formatting_with_information() {
 			'|video-id=' + video_id_text + '\n' + 
 			']]\n'
 		}
-	} else if (video_type_text == ('novideo' || 'false')) {
+	} else if (video_type_text == 'novideo' || video_type_text == 'false') {
 		info_format += '|videotype=' + video_type_text + '\n' +
 		']]\n'
 	}
@@ -123,24 +121,24 @@ function formatting_with_information() {
 		'    [[/cell]]' +
 		'[[/row]][[row]]\n'
 	}
-	if (vocaro_text == 'etc') {
-		if (vocaro_etc_text == '') {
-			alert_list.push('가수 이름 없음');
-		} else {
-			info_format += '    [[hcell class="vocaro-cell"]] 노래 [[/hcell]]\n' +
-		'    [[cell]]\n' +
-		'        ' + vocaro_etc_text + '\n' +
-		'    [[/cell]]' +
-		'[[/row]][[row]]\n'
-		}
-	} else {
-		info_format += '    [[hcell class="vocaro-cell"]] 노래 [[/hcell]]\n' +
-		'    [[cell]]\n' +
-		'        [[[' + vocaro_text + '|]]]\n' +
-		'    [[/cell]]\n' +
-		'[[/row]]\n' +
-		'[[include component:info-table-end]]\n\n'
-	}
+	// if (vocaro_text == 'etc') {
+	// 	if (vocaro_etc_text == '') {
+	// 		alert_list.push('가수 이름 없음');
+	// 	} else {
+	// 		info_format += '    [[hcell class="vocaro-cell"]] 노래 [[/hcell]]\n' +
+	// 	'    [[cell]]\n' +
+	// 	'        ' + vocaro_etc_text + '\n' +
+	// 	'    [[/cell]]' +
+	// 	'[[/row]][[row]]\n'
+	// 	}
+	// } else {
+	// }
+	info_format += '    [[hcell class="vocaro-cell"]] 노래 [[/hcell]]\n' +
+	'    [[cell]]\n' +
+	'        [[[' + vocaro_text + '|]]]\n' +
+	'    [[/cell]]\n' +
+	'[[/row]]\n' +
+	'[[include component:info-table-end]]\n\n'
 
 	if (alert_list.length > 0) {
 		return alert(alert_formatting(alert_list));
@@ -220,6 +218,5 @@ function alert_formatting(alert_list) {
 	for (let i = 0; i < alert_list.length; i++) {
 		i < alert_list.length ? (output_string += alert_list[i] + '\n') : (output_string += alert_list[i]);
 	}
-	console.log(output_string)
 	return output_string;
 }
