@@ -2,9 +2,13 @@
 
 보카로 가사 위키의 서식으로 변환해 주는 윈도우즈 앱 및 웹 앱입니다.
 
-이 깃허브는 개발만 이뤄지는 곳이며, 릴리즈된 것은 [보카로 가사 위키 번역가 툴(릴리즈 버전)](http://vocaro.wikidot.com/guide:wiki-translating-tool)로 이동하시면 됩니다.
+이 깃허브는 개발만 이뤄지는 곳입니다.
 
-깃허브의 버전과 릴리즈 버전은 차이가 있을 수 있습니다.
+따라서, 깃허브의 버전과 릴리즈 버전은 차이가 있을 수 있습니다.
+
+ - 깃허브 버전: [보카로 가사 위키 번역가 툴(깃허브 버전)](https://qlife1146.github.io/vocaro_wiki_formatter/)
+
+ - 릴리즈 버전: [보카로 가사 위키 번역가 툴(릴리즈 버전)](http://vocaro.wikidot.com/guide:wiki-translating-tool)
 
 이 README 문서는 깃허브 버전 기준으로 작성됐습니다.
 
