@@ -13,7 +13,7 @@ document.addEventListener('keydown', function (event) {
 window.onload = function () {
 	//버전관리 부분
 	//1.1.4(22.11.10~): 코드 조정
-	const version = 'v.1.1.4'; //버전 관리 함수
+	const version = 'v1.1.3.1'; //버전 관리 함수
 	document.getElementById('version').innerHTML = `<h4 class='version' id='version'>${version}</h4`;
 
 	//input_text의 display 여부
