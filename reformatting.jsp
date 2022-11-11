@@ -159,12 +159,11 @@ function redo() {
 
 //[클립보드로 복사 버튼]클립보드로 복사해 주는 함수
 function copy_to_clipboard() {
-	const finish_textarea = document.getElementById("finish_textarea");
-
-	finish_textarea.select();
-	finish_textarea.setSelectionRange(0, 99999);
+	const finish_textarea_value = document.getElementById("finish_textarea");
+	finish_textarea_value.select();
+	finish_textarea_value.setSelectionRange(0, 99999);
 	document.execCommand("copy");
-	finish_textarea.setSelectionRange(0, 0);
+	finish_textarea_value.setSelectionRange(0, 0);
 }
 
 //비디오 타입 실시간 작동 함수
