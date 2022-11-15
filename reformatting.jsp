@@ -12,8 +12,8 @@ document.addEventListener("keydown", function (event) {
 
 window.onload = function () {
     //버전관리 부분
-    //1.1.4.1(22.11.12~): 자동 완성 수정(첫 철자 > 중간 철자)
-    const version = "v1.1.4.1"; //버전 관리 변수
+    //1.1.4.1(22.11.15~): 작곡가/작사가에 자동 완성 기능 추가 및 정리
+    const version = "v1.1.5"; //버전 관리 변수
     document.getElementById("version").innerHTML = `<h4 class='version' id='version'>${version}</h4`;
 
     //input_text의 display 여부
@@ -100,12 +100,12 @@ function formatting_with_information() {
     if (composer_text == "") {
         alert_list.push("작곡가 이름 없음");
     } else {
-        info_format += '    [[hcell class="composer-cell"]] 작곡 [[/hcell]]\n' + "    [[cell]]\n" + "        " + composer_text + "\n" + "    [[/cell]]" + "[[/row]][[row]]\n";
+        info_format += '    [[hcell class="composer-cell"]] 작곡 [[/hcell]]\n' + "    [[cell]]\n" + "        [[[" + composer_text + "|]]]\n" + "    [[/cell]]" + "[[/row]][[row]]\n";
     }
     if (writer_text == "") {
         alert_list.push("작사가 이름 없음");
     } else {
-        info_format += '    [[hcell class="composer-cell"]] 작사 [[/hcell]]\n' + "    [[cell]]\n" + "        " + writer_text + "\n" + "    [[/cell]]" + "[[/row]][[row]]\n";
+        info_format += '    [[hcell class="composer-cell"]] 작사 [[/hcell]]\n' + "    [[cell]]\n" + "        [[[" + writer_text + "|]]]\n" + "    [[/cell]]" + "[[/row]][[row]]\n";
     }
     // if (vocaro_text == 'etc') {
     // 	if (vocaro_etc_text == '') {
