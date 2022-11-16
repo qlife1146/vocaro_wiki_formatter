@@ -50,12 +50,11 @@
                         autocomplete="off"
                         placeholder="영상 아이디"
                     />
-
+                    <p>자동 완성이 적용된 곳은 결과가 영어로 나오는 것이 옳바른 양식입니다.</p>
                     <p>작곡가</p>
                     <input
                         list="artist_list"
                         id="composer_textbox"
-                        autocomplete="off"
                     />
                     <datalist id="artist_list"></datalist>
                     <script>
@@ -75,7 +74,6 @@
                         autocomplete="off"
                     />
                     <datalist id="artist_list"></datalist>
-                    <p>작곡가/작사가 양식은 <b>artist:이름으로 나오는 것이 정상</b>입니다.</p>
                     <p>가수</p>
                     <input
                         list="vocaro_list"
@@ -87,8 +85,8 @@
                         for (let i = 0; i < vocaro_value_list.length; i++) {
                             let x = document.getElementById("vocaro_list");
                             let opt = document.createElement("option");
-                            opt.value = vocaro_value_list[i];
-                            opt.label = vocaro_label_list[i];
+                            opt.value = vocaro_link_list[i];
+                            opt.label = vocaro_name_list[i];
                             document.getElementById("vocaro_list").append(opt);
                         }
                     </script>
@@ -154,6 +152,7 @@
                     style="font-weight: bold; text-decoration: underline"
                     >링크</a
                 >를 확인해 주세요.
+                <a>문제가 있으면 꼭 디스코드에 제보해 주세요.</a>
             </p>
         </article>
     </body>
