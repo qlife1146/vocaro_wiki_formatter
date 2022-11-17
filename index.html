@@ -55,6 +55,7 @@
                     <input
                         list="artist_list"
                         id="composer_textbox"
+                        autocomplete="off"
                     />
                     <datalist id="artist_list"></datalist>
                     <script>
@@ -74,6 +75,7 @@
                         autocomplete="off"
                     />
                     <datalist id="artist_list"></datalist>
+
                     <p>가수</p>
                     <input
                         list="vocaro_list"
@@ -82,7 +84,7 @@
                     />
                     <datalist id="vocaro_list"></datalist>
                     <script>
-                        for (let i = 0; i < vocaro_value_list.length; i++) {
+                        for (let i = 0; i < vocaro_link_list.length; i++) {
                             let x = document.getElementById("vocaro_list");
                             let opt = document.createElement("option");
                             opt.value = vocaro_link_list[i];

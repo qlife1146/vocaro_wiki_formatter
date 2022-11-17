@@ -12,8 +12,8 @@ document.addEventListener("keydown", function (event) {
 
 window.onload = function () {
     //버전관리 부분
-    //1.6.1(22.11.16~): 버전 넘버 수정. 자동 완성 기능의 정렬 폐기. 안내문 작성
-    const version = "v1.6.1"; //버전 관리 변수
+    //1.6.1(22.11.17~): 보카로 자동 완성 기능에 실수 픽스.
+    const version = "v1.6.2"; //버전 관리 변수
     document.getElementById("version").innerHTML = `<h4 class='version' id='version'>${version}</h4`;
 
     //input_text의 display 여부
