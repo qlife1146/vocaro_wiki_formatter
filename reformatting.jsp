@@ -12,8 +12,8 @@ document.addEventListener("keydown", function (event) {
 
 window.onload = function () {
     //버전관리 부분
-    //1.6.1(22.11.17~): 보카로 자동 완성 기능에 실수 픽스.
-    const version = "v1.6.2"; //버전 관리 변수
+    //1.6.1(22.11.18?~): 작곡가/작사가/보카로 칸 추가/삭제 기능 추가.
+    const version = "v1.7.0"; //버전 관리 변수
     document.getElementById("version").innerHTML = `<h4 class='version' id='version'>${version}</h4`;
 
     //input_text의 display 여부
@@ -70,13 +70,16 @@ function formatting_with_information() {
     let song_title_text = document.getElementById("song_title_textbox").value;
     let video_type_text = document.getElementById("video_type_select").value;
     let video_id_text = document.getElementById("video_id_textbox").value;
-    let composer_text = document.getElementById("composer_textbox").value;
-    let writer_text = document.getElementById("writer_textbox").value;
-    let vocaro_text = document.getElementById("vocaro_textbox").value;
+    // let composer_text = document.getElementById("composer_textbox").value;
+    // let writer_text = document.getElementById("writer_textbox").value;
+    // let vocaro_text = document.getElementById("vocaro_textbox").value;
+    let composer_text = document.querySelectorAll(".composer_textbox");
+    let writer_text = document.querySelectorAll(".writer_textbox");
+    let vocaro_text = document.querySelectorAll(".vocaro_textbox");
 
-    video_type_text = video_type_text.replace(/ /g, "");
-    video_id_text = video_id_text.replace(/ /g, "");
-    vocaro_text = vocaro_text.replace(/ /g, "");
+    // video_type_text = video_type_text.replace(/ /g, "");
+    // video_id_text = video_id_text.replace(/ /g, "");
+    // vocaro_text = vocaro_text.replace(/ /g, "");
 
     let alert_list = [];
     let info_format = "+ 정보\n" + "[[include component:info-table-start\n";
@@ -100,26 +103,32 @@ function formatting_with_information() {
     if (composer_text == "") {
         alert_list.push("작곡가 이름 없음");
     } else {
-        info_format += '    [[hcell class="composer-cell"]] 작곡 [[/hcell]]\n' + "    [[cell]]\n" + "        [[[" + composer_text + "|]]]\n" + "    [[/cell]]" + "[[/row]][[row]]\n";
+        info_format += '    [[hcell class="composer-cell"]] 작곡 [[/hcell]]\n' + "    [[cell]]\n";
+        for (let i = 0; i < composer_text.length; i++) {
+            info_format += "        [[[" + composer_text[i].value + "|]]]\n";
+        }
+        info_format += "    [[/cell]][[/row]][[row]]\n";
     }
+
     if (writer_text == "") {
         alert_list.push("작사가 이름 없음");
     } else {
-        info_format += '    [[hcell class="composer-cell"]] 작사 [[/hcell]]\n' + "    [[cell]]\n" + "        [[[" + writer_text + "|]]]\n" + "    [[/cell]]" + "[[/row]][[row]]\n";
+        info_format += '    [[hcell class="composer-cell"]] 작사 [[/hcell]]\n' + "    [[cell]]\n";
+        for (let i = 0; i < writer_text.length; i++) {
+            info_format += "        [[[" + writer_text[i].value + "|]]]\n";
+        }
+        info_format += "    [[/cell]][[/row]][[row]]\n";
     }
-    // if (vocaro_text == 'etc') {
-    // 	if (vocaro_etc_text == '') {
-    // 		alert_list.push('가수 이름 없음');
-    // 	} else {
-    // 		info_format += '    [[hcell class="vocaro-cell"]] 노래 [[/hcell]]\n' +
-    // 	'    [[cell]]\n' +
-    // 	'        ' + vocaro_etc_text + '\n' +
-    // 	'    [[/cell]]' +
-    // 	'[[/row]][[row]]\n'
-    // 	}
-    // } else {
-    // }
-    info_format += '    [[hcell class="vocaro-cell"]] 노래 [[/hcell]]\n' + "    [[cell]]\n" + "        [[[" + vocaro_text + "|]]]\n" + "    [[/cell]]\n" + "[[/row]]\n" + "[[include component:info-table-end]]\n\n";
+
+    if (vocaro_text == "") {
+        alert_list.push("보카로 이름 없음");
+    } else {
+        info_format += '    [[hcell class="vocaro-cell"]] 노래 [[/hcell]]\n' + "    [[cell]]\n";
+        for (let i = 0; i < vocaro_text.length; i++) {
+            info_format += "        [[[" + vocaro_text[i].value + "|]]]\n";
+        }
+        info_format += "    [[/cell]]\n" + "[[/row]]\n" + "[[include component:info-table-end]]\n\n";
+    }
 
     if (alert_list.length > 0) {
         return alert(alert_formatting(alert_list));
@@ -180,23 +189,69 @@ function type_realtime() {
     }
 }
 
-//가수 실시간 작동 함수
-function vocaro_realtime() {
-    const vocaro = document.getElementById("vocaro_type_select").value;
-    if (type == "etc") {
-        document.getElementById("vocaro_etc_textbox").disabled = false;
-        document.getElementById("vocaro_etc_textbox").placeholder = "haruno-sora";
-        return document.getElementById("vocaro_etc_textbox").value;
-    } else {
-        document.getElementById("vocaro_etc_textbox").disabled = true;
-        return vocaro;
-    }
-}
-
 function alert_formatting(alert_list) {
     let output_string = "";
     for (let i = 0; i < alert_list.length; i++) {
         i < alert_list.length ? (output_string += alert_list[i] + "\n") : (output_string += alert_list[i]);
     }
     return output_string;
+}
+
+function add_composer_textbox() {
+    //MARK: 여러 박스 값 가져오는 거 해결 필요
+    const original = document.getElementById("composer_div");
+    const clone = original.cloneNode(true);
+
+    original.after(clone);
+
+    const new_rmv_btn = document.createElement("button");
+    new_rmv_btn.type = "button";
+    new_rmv_btn.innerHTML = "-";
+    clone.appendChild(new_rmv_btn);
+
+    new_rmv_btn.addEventListener("click", function () {
+        const remove_btn = this.parentNode;
+        remove_btn.parentNode.removeChild(remove_btn);
+    });
+}
+
+function add_writer_textbox() {
+    const original = document.getElementById("writer_div");
+    const clone = original.cloneNode(true);
+    original.after(clone);
+
+    const new_rmv_btn = document.createElement("button");
+    new_rmv_btn.type = "button";
+    new_rmv_btn.innerHTML = "-";
+    clone.appendChild(new_rmv_btn);
+
+    new_rmv_btn.addEventListener("click", function () {
+        const remove_btn = this.parentNode;
+        remove_btn.parentNode.removeChild(remove_btn);
+    });
+}
+
+function add_vocaro_textbox() {
+    const original = document.getElementById("vocaro_div");
+    const clone = original.cloneNode(true);
+    original.after(clone);
+
+    const new_rmv_btn = document.createElement("button");
+    new_rmv_btn.type = "button";
+    new_rmv_btn.innerHTML = "-";
+    clone.appendChild(new_rmv_btn);
+
+    // const element = document.getElementById("composer_div")
+    // element.append(new_div)
+
+    new_rmv_btn.addEventListener("click", function () {
+        const remove_btn = this.parentNode;
+        remove_btn.parentNode.removeChild(remove_btn);
+    });
+}
+
+function debug() {
+    let a = document.querySelectorAll(".vocaro_textbox");
+    console.log(a.length)
+    console.log(a[0].value)
 }

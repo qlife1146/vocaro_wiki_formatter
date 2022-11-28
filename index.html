@@ -52,46 +52,76 @@
                     />
                     <p>자동 완성이 적용된 곳은 결과가 영어로 나오는 것이 옳바른 양식입니다.</p>
                     <p>작곡가</p>
-                    <input
-                        list="artist_list"
-                        id="composer_textbox"
-                        autocomplete="off"
-                    />
-                    <datalist id="artist_list"></datalist>
-                    <script>
-                        for (let i = 0; i < artist_names.length; i++) {
-                            let x = document.getElementById("artist_list");
-                            let opt = document.createElement("option");
-                            opt.value = artist_links[i];
-                            opt.label = artist_names[i];
-                            document.getElementById("artist_list").append(opt);
-                        }
-                    </script>
+                    <button
+                        id="add_button"
+                        type="button"
+                        onclick="add_composer_textbox()"
+                    >
+                        +
+                    </button>
+                    <div id="composer_div" class="composer_div">
+                        <input
+                            list="artist_list"
+                            id="composer_textbox"
+                            class="composer_textbox"
+                            autocomplete="off"
+                        />
+                        <datalist id="artist_list"></datalist>
+                        <script>
+                            for (let i = 0; i < artist_names.length; i++) {
+                                let x = document.getElementById("artist_list");
+                                let opt = document.createElement("option");
+                                opt.value = artist_links[i];
+                                opt.label = artist_names[i];
+                                document.getElementById("artist_list").append(opt);
+                            }
+                        </script>
+                    </div>
 
                     <p>작사가</p>
-                    <input
-                        list="artist_list"
-                        id="writer_textbox"
-                        autocomplete="off"
-                    />
-                    <datalist id="artist_list"></datalist>
+                    <button
+                        id="add_button"
+                        type="button"
+                        onclick="add_writer_textbox()"
+                    >
+                        +
+                    </button>
+                    <div id="writer_div" class="writer_div">
+                        <input
+                            list="artist_list"
+                            id="writer_textbox"
+                            class="writer_textbox"
+                            autocomplete="off"
+                        />
+                        <datalist id="artist_list"></datalist>
+                    </div>
 
                     <p>가수</p>
-                    <input
-                        list="vocaro_list"
-                        id="vocaro_textbox"
-                        autocomplete="off"
-                    />
-                    <datalist id="vocaro_list"></datalist>
-                    <script>
-                        for (let i = 0; i < vocaro_link_list.length; i++) {
-                            let x = document.getElementById("vocaro_list");
-                            let opt = document.createElement("option");
-                            opt.value = vocaro_link_list[i];
-                            opt.label = vocaro_name_list[i];
-                            document.getElementById("vocaro_list").append(opt);
-                        }
-                    </script>
+                    <button
+                        id="add_button"
+                        type="button"
+                        onclick="add_vocaro_textbox()"
+                    >
+                        +
+                    </button>
+                    <div id="vocaro_div" class="vocaro_div">
+                        <input
+                            list="vocaro_list"
+                            id="vocaro_textbox"
+                            class="vocaro_textbox"
+                            autocomplete="off"
+                        />
+                        <datalist id="vocaro_list"></datalist>
+                        <script>
+                            for (let i = 0; i < vocaro_link_list.length; i++) {
+                                let x = document.getElementById("vocaro_list");
+                                let opt = document.createElement("option");
+                                opt.value = vocaro_link_list[i];
+                                opt.label = vocaro_name_list[i];
+                                document.getElementById("vocaro_list").append(opt);
+                            }
+                        </script>
+                    </div>
                     <p>원본 가사</p>
                     <textarea
                         id="original_textarea"
@@ -158,5 +188,5 @@
             </p>
         </article>
     </body>
-    <!-- <button id="debug_button" onclick="debug()">debug</button> -->
+    <button id="debug_button" onclick="debug()">debug</button>
 </html>
