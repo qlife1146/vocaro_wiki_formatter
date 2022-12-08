@@ -12,8 +12,8 @@ document.addEventListener("keydown", function (event) {
 
 window.onload = function () {
     //버전관리 부분
-    //1.6.1(22.11.18?~): 작곡가/작사가/보카로 칸 추가/삭제 기능 추가.
-    const version = "v1.7.0"; //버전 관리 변수
+    //1.7.1(22.12.07~): jsp > js
+    const version = "v1.7.1"; //버전 관리 변수
     document.getElementById("version").innerHTML = `<h4 class='version' id='version'>${version}</h4`;
 
     //input_text의 display 여부
