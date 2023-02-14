@@ -1,6 +1,3 @@
-let original_tmp = "";
-let finish_tmp = "";
-
 //ctrl+space 단축키 기능
 document.addEventListener("keydown", function (event) {
     const key = event.which || event.keyCode;
@@ -12,8 +9,8 @@ document.addEventListener("keydown", function (event) {
 
 window.onload = function () {
     //버전관리 부분
-    //1.7.1(22.12.07~): jsp > js
-    const version = "v1.7.1"; //버전 관리 변수
+    //1.8.0(23.02.14~): 초기화 및 링크
+    const version = "v1.8.0"; //버전 관리 변수
     document.getElementById("version").innerHTML = `<h4 class='version' id='version'>${version}</h4`;
 
     //input_text의 display 여부
@@ -39,7 +36,25 @@ function formatting() {
 
     //가나 대조표에 의거한 오자 수정
     for (let i = 0; i < result_list.length; i++) {
-        result_list[i] = result_list[i].replace(/챠/g, "차").replace(/챤/g, "찬").replace(/챳/g, "찻").replace(/츄/g, "추").replace(/츈/g, "춘").replace(/츗/g, "춧").replace(/쵸/g, "초").replace(/쵼/g, "촌").replace(/춋/g, "촛").replace(/쟈/g, "자").replace(/쟌/g, "잔").replace(/쟛/g, "잣").replace(/쥬/g, "주").replace(/쥰/g, "준").replace(/쥿/g, "줏").replace(/죠/g, "조").replace(/죤/g, "존").replace(/죳/g, "좃");
+        result_list[i] = result_list[i]
+            .replace(/챠/g, "차")
+            .replace(/챤/g, "찬")
+            .replace(/챳/g, "찻")
+            .replace(/츄/g, "추")
+            .replace(/츈/g, "춘")
+            .replace(/츗/g, "춧")
+            .replace(/쵸/g, "초")
+            .replace(/쵼/g, "촌")
+            .replace(/춋/g, "촛")
+            .replace(/쟈/g, "자")
+            .replace(/쟌/g, "잔")
+            .replace(/쟛/g, "잣")
+            .replace(/쥬/g, "주")
+            .replace(/쥰/g, "준")
+            .replace(/쥿/g, "줏")
+            .replace(/죠/g, "조")
+            .replace(/죤/g, "존")
+            .replace(/죳/g, "좃");
     }
 
     //발음 줄에 하이픈(-)이 있는지 검사
@@ -69,7 +84,7 @@ function formatting_with_information() {
 
     let song_title_text = document.getElementById("song_title_textbox").value;
     let video_type_text = document.getElementById("video_type_select").value;
-    let video_id_text = document.getElementById("video_id_textbox").value;
+    let video_id_text = link_formatting();
     // let composer_text = document.getElementById("composer_textbox").value;
     // let writer_text = document.getElementById("writer_textbox").value;
     // let vocaro_text = document.getElementById("vocaro_textbox").value;
@@ -105,7 +120,9 @@ function formatting_with_information() {
     } else {
         info_format += '    [[hcell class="composer-cell"]] 작곡 [[/hcell]]\n' + "    [[cell]]\n";
         for (let i = 0; i < composer_text.length; i++) {
-            info_format += "        [[[" + composer_text[i].value + "|]]]\n";
+            if (composer_text[i].value !== "") {
+                info_format += "        [[[" + composer_text[i].value + "|]]]\n";
+            }
         }
         info_format += "    [[/cell]][[/row]][[row]]\n";
     }
@@ -115,7 +132,9 @@ function formatting_with_information() {
     } else {
         info_format += '    [[hcell class="composer-cell"]] 작사 [[/hcell]]\n' + "    [[cell]]\n";
         for (let i = 0; i < writer_text.length; i++) {
-            info_format += "        [[[" + writer_text[i].value + "|]]]\n";
+            if (writer_text[i].value !== "") {
+                info_format += "        [[[" + writer_text[i].value + "|]]]\n";
+            }
         }
         info_format += "    [[/cell]][[/row]][[row]]\n";
     }
@@ -125,7 +144,9 @@ function formatting_with_information() {
     } else {
         info_format += '    [[hcell class="vocaro-cell"]] 노래 [[/hcell]]\n' + "    [[cell]]\n";
         for (let i = 0; i < vocaro_text.length; i++) {
-            info_format += "        [[[" + vocaro_text[i].value + "|]]]\n";
+            if (vocaro_text[i].value !== "") {
+                info_format += "        [[[" + vocaro_text[i].value + "|]]]\n";
+            }
         }
         info_format += "    [[/cell]]\n" + "[[/row]]\n" + "[[include component:info-table-end]]\n\n";
     }
@@ -145,26 +166,43 @@ function formatting_with_information() {
 function reset() {
     let original = document.getElementById("original_textarea");
     let finish = document.getElementById("finish_textarea");
+    let title = document.getElementById("song_title_textbox");
+    let videoId = document.getElementById("video_id_textbox");
+    let composer = document.getElementById("composer_textbox");
+    let writer = document.getElementById("writer_textbox");
+    let vocaro = document.getElementById("vocaro_textbox");
 
-    if (original.value != "") {
+    // if (original.value != "") {
+    //     original_tmp = original.value;
+    //     finish_tmp = finish.value;
+    //     original.value = "";
+    //     finish.value = "";
+    // }
+    const check = confirm("초기화 진행을 원하면 [확인]을 눌러주세요.");
+
+    if (check) {
         original_tmp = original.value;
         finish_tmp = finish.value;
         original.value = "";
         finish.value = "";
+        title.value = "";
+        videoId.value = "";
+        composer.value = "";
+        writer.value = "";
+        vocaro.value = "";
     }
-    return [original_tmp, finish_tmp];
 }
 
 //[되돌리기 버튼]되돌리기 함수
-function redo() {
-    const original = document.getElementById("original_textarea");
-    const finish = document.getElementById("finish_textarea");
-    const original_text = reset()[0];
-    const finish_text = reset()[1];
+// function redo() {
+//     const original = document.getElementById("original_textarea");
+//     const finish = document.getElementById("finish_textarea");
+//     const original_text = reset()[0];
+//     const finish_text = reset()[1];
 
-    original.value = original_text;
-    finish.value = finish_text;
-}
+//     original.value = original_text;
+//     finish.value = finish_text;
+// }
 
 //[클립보드로 복사 버튼]클립보드로 복사해 주는 함수
 function copy_to_clipboard() {
@@ -198,60 +236,60 @@ function alert_formatting(alert_list) {
 }
 
 function add_composer_textbox() {
-    //MARK: 여러 박스 값 가져오는 거 해결 필요
     const original = document.getElementById("composer_div");
     const clone = original.cloneNode(true);
-
     original.after(clone);
+}
 
-    const new_rmv_btn = document.createElement("button");
-    new_rmv_btn.type = "button";
-    new_rmv_btn.innerHTML = "-";
-    clone.appendChild(new_rmv_btn);
-
-    new_rmv_btn.addEventListener("click", function () {
-        const remove_btn = this.parentNode;
-        remove_btn.parentNode.removeChild(remove_btn);
-    });
+function rmv_composer_textbox() {
+    const parent = document.getElementById("composer_parent");
+    if (parent.childElementCount > 1) {
+        parent.removeChild(parent.lastChild);
+    }
 }
 
 function add_writer_textbox() {
     const original = document.getElementById("writer_div");
     const clone = original.cloneNode(true);
     original.after(clone);
+}
 
-    const new_rmv_btn = document.createElement("button");
-    new_rmv_btn.type = "button";
-    new_rmv_btn.innerHTML = "-";
-    clone.appendChild(new_rmv_btn);
-
-    new_rmv_btn.addEventListener("click", function () {
-        const remove_btn = this.parentNode;
-        remove_btn.parentNode.removeChild(remove_btn);
-    });
+function rmv_writer_textbox() {
+    const parent = document.getElementById("writer_parent");
+    if (parent.childElementCount > 1) {
+        parent.removeChild(parent.lastChild);
+    }
 }
 
 function add_vocaro_textbox() {
     const original = document.getElementById("vocaro_div");
     const clone = original.cloneNode(true);
     original.after(clone);
+}
 
-    const new_rmv_btn = document.createElement("button");
-    new_rmv_btn.type = "button";
-    new_rmv_btn.innerHTML = "-";
-    clone.appendChild(new_rmv_btn);
+function rmv_vocaro_textbox() {
+    const parent = document.getElementById("vocaro_parent");
+    if (parent.childElementCount > 1) {
+        parent.removeChild(parent.lastChild);
+    }
+}
 
-    // const element = document.getElementById("composer_div")
-    // element.append(new_div)
+function link_formatting() {
+    let link = document.getElementById("video_id_textbox").value;
+    //https://www.nicovideo.jp/watch/sm41728811
+    //https://www.youtube.com/watch?v=ADaOeXJnH7c
 
-    new_rmv_btn.addEventListener("click", function () {
-        const remove_btn = this.parentNode;
-        remove_btn.parentNode.removeChild(remove_btn);
-    });
+    if (link.includes("youtube")) {
+        return link.substr(-11);
+    } else if (link.includes("nicovideo")) {
+        return link.substr(-10);
+    } else {
+        return link;
+    }
 }
 
 function debug() {
     let a = document.querySelectorAll(".vocaro_textbox");
-    console.log(a.length)
-    console.log(a[0].value)
+    console.log(a.length);
+    console.log(a[0].value);
 }
