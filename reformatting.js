@@ -9,8 +9,8 @@ document.addEventListener("keydown", function (event) {
 
 window.onload = function () {
     //버전관리 부분
-    //1.8.0(23.02.14~): 초기화 및 링크
-    const version = "v1.8.0"; //버전 관리 변수
+    //1.8.1(23.02.15~): 정리
+    const version = "v1.8.2"; //패치노트 안내
     document.getElementById("version").innerHTML = `<h4 class='version' id='version'>${version}</h4`;
 
     //input_text의 display 여부
