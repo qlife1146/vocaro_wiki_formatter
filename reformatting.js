@@ -78,23 +78,14 @@ function formatting() {
 
 //[정보까지 변환 버튼]정보까지 함께 서식에 맞춰주는 함수
 function formatting_with_information() {
-    //html 변수
-    const original_textarea = document.getElementById("original_textarea");
     const finish_textarea = document.getElementById("finish_textarea");
 
     let song_title_text = document.getElementById("song_title_textbox").value;
     let video_type_text = document.getElementById("video_type_select").value;
     let video_id_text = link_formatting();
-    // let composer_text = document.getElementById("composer_textbox").value;
-    // let writer_text = document.getElementById("writer_textbox").value;
-    // let vocaro_text = document.getElementById("vocaro_textbox").value;
     let composer_text = document.querySelectorAll(".composer_textbox");
     let writer_text = document.querySelectorAll(".writer_textbox");
     let vocaro_text = document.querySelectorAll(".vocaro_textbox");
-
-    // video_type_text = video_type_text.replace(/ /g, "");
-    // video_id_text = video_id_text.replace(/ /g, "");
-    // vocaro_text = vocaro_text.replace(/ /g, "");
 
     let alert_list = [];
     let info_format = "+ 정보\n" + "[[include component:info-table-start\n";
@@ -193,17 +184,6 @@ function reset() {
     }
 }
 
-//[되돌리기 버튼]되돌리기 함수
-// function redo() {
-//     const original = document.getElementById("original_textarea");
-//     const finish = document.getElementById("finish_textarea");
-//     const original_text = reset()[0];
-//     const finish_text = reset()[1];
-
-//     original.value = original_text;
-//     finish.value = finish_text;
-// }
-
 //[클립보드로 복사 버튼]클립보드로 복사해 주는 함수
 function copy_to_clipboard() {
     const finish_textarea_value = document.getElementById("finish_textarea");
@@ -235,58 +215,20 @@ function alert_formatting(alert_list) {
     return output_string;
 }
 
-function add_composer_textbox() {
-    const composerParent = document.getElementById("composer_parent");
-    const original = document.getElementById("composer_div");
+function add_textbox(parentId, originalId, textboxClass, datalistId, labelList, valueList) {
+    const parent = document.getElementById(parentId);
+    const original = document.getElementById(originalId);
     const clone = original.cloneNode(true);
-    const clonedTextBox = clone.querySelector(".composer_textbox");
+    const clonedTextBox = clone.querySelector("." + textboxClass);
     clonedTextBox.value = "";
-
-    const lastComposer = composerParent.lastElementChild;
-    composerParent.insertBefore(clone, lastComposer.nextSibling);
+    const lastChild = parent.lastElementChild;
+    parent.insertBefore(clone, lastChild.nextSibling);
 }
 
-function rmv_composer_textbox() {
-    const parent = document.getElementById("composer_parent");
+function rmv_textbox(parentId) {
+    const parent = document.getElementById(parentId);
     if (parent.childElementCount > 1) {
-        parent.removeChild(parent.lastChild);
-    }
-}
-
-function add_writer_textbox() {
-    const writerParent = document.getElementById("writer_parent");
-    const original = document.getElementById("writer_div");
-    const clone = original.cloneNode(true);
-    const clonedTextBox = clone.querySelector(".writer_textbox");
-    clonedTextBox.value = "";
-
-    const lastWriter = writerParent.lastElementChild;
-    writerParent.insertBefore(clone, lastWriter.nextSibling);
-}
-
-function rmv_writer_textbox() {
-    const parent = document.getElementById("writer_parent");
-    parent.removeChild(parent.lastChild);
-    if (parent.childElementCount > 1) {
-        parent.removeChild(parent.lastChild);
-    }
-}
-
-function add_vocaro_textbox() {
-    const vocaroParent = document.getElementById("vocaro_parent");
-    const original = document.getElementById("vocaro_div");
-    const clone = original.cloneNode(true);
-    const clonedTextBox = clone.querySelector(".vocaro_textbox");
-    clonedTextBox.value = "";
-
-    const lastVocaro = vocaroParent.lastElementChild;
-    vocaroParent.insertBefore(clone, lastVocaro.nextSibling);
-}
-
-function rmv_vocaro_textbox() {
-    const parent = document.getElementById("vocaro_parent");
-    if (parent.childElementCount > 1) {
-        parent.removeChild(parent.lastChild);
+        parent.lastElementChild.remove();
     }
 }
 

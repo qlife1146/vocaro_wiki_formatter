@@ -43,15 +43,128 @@
                         <option value="novideo">외부링크 X</option>
                         <option value="false">영상 없음</option>
                     </select>
-                    <p>영상 아이디</p>
-                    <input
-                        type="text"
-                        id="video_id_textbox"
-                        autocomplete="off"
-                        placeholder="영상 아이디"
-                    />
+                    <p>영상 아이디(링크 전체도 가능)</p>
+                    <div class="tooltip-container">
+                        <input
+                            type="text"
+                            id="video_id_textbox"
+                            autocomplete="off"
+                            placeholder="영상 아이디"
+                            title="링크 전체를 넣어도 적용됩니다!"
+                        />
+                    </div>
                     <p>자동 완성이 적용된 곳은 결과가 영어로 나오는 것이 올바른 양식입니다.</p>
                     <p>작곡가</p>
+                    <button
+                        type="button"
+                        onclick="add_textbox('composer_parent', 'composer_div', 'composer_textbox', 'artist_list', artist_names, artist_links)"
+                    >
+                        +
+                    </button>
+                    <button
+                        type="button"
+                        onclick="rmv_textbox('composer_parent')"
+                    >
+                        -
+                    </button>
+                    <div id="composer_parent">
+                        <div
+                            id="composer_div"
+                            class="composer_div"
+                        >
+                            <input
+                                list="artist_list"
+                                id="composer_textbox"
+                                class="composer_textbox"
+                                autocomplete="off"
+                            />
+                            <datalist id="artist_list"></datalist>
+                            <script>
+                                for (let i = 0; i < artist_names.length; i++) {
+                                    let x = document.getElementById("artist_list");
+                                    let opt = document.createElement("option");
+                                    opt.value = artist_links[i];
+                                    opt.label = artist_names[i];
+                                    document.getElementById("artist_list").append(opt);
+                                }
+                            </script>
+                        </div>
+                    </div>
+
+                    <p>작사가</p>
+                    <button
+                        type="button"
+                        onclick="add_textbox('writer_parent', 'writer_div', 'writer_textbox', 'artist_list', [], [])"
+                    >
+                        +
+                    </button>
+                    <button
+                        type="button"
+                        onclick="rmv_textbox('writer_parent')"
+                    >
+                        -
+                    </button>
+                    <div id="writer_parent">
+                        <div
+                            id="writer_div"
+                            class="writer_div"
+                        >
+                            <input
+                                list="artist_list"
+                                id="writer_textbox"
+                                class="writer_textbox"
+                                autocomplete="off"
+                            />
+                            <datalist id="artist_list"></datalist>
+                            <script>
+                                for (let i = 0; i < artist_names.length; i++) {
+                                    let x = document.getElementById("artist_list");
+                                    let opt = document.createElement("option");
+                                    opt.value = artist_links[i];
+                                    opt.label = artist_names[i];
+                                    document.getElementById("artist_list").append(opt);
+                                }
+                            </script>
+                        </div>
+                    </div>
+
+                    <p>가수</p>
+                    <button
+                        type="button"
+                        onclick="add_textbox('vocaro_parent', 'vocaro_div', 'vocaro_textbox', 'vocaro_list', vocaro_name_list, vocaro_link_list)"
+                    >
+                        +
+                    </button>
+                    <button
+                        type="button"
+                        onclick="rmv_textbox('vocaro_parent')"
+                    >
+                        -
+                    </button>
+                    <div id="vocaro_parent">
+                        <div
+                            id="vocaro_div"
+                            class="vocaro_div"
+                        >
+                            <input
+                                list="vocaro_list"
+                                id="vocaro_textbox"
+                                class="vocaro_textbox"
+                                autocomplete="off"
+                            />
+                            <datalist id="vocaro_list"></datalist>
+                            <script>
+                                for (let i = 0; i < vocaro_link_list.length; i++) {
+                                    let x = document.getElementById("vocaro_list");
+                                    let opt = document.createElement("option");
+                                    opt.value = vocaro_link_list[i];
+                                    opt.label = vocaro_name_list[i];
+                                    document.getElementById("vocaro_list").append(opt);
+                                }
+                            </script>
+                        </div>
+                    </div>
+                    <!-- <p>작곡가</p>
                     <button
                         id="add_button"
                         type="button"
@@ -157,7 +270,7 @@
                                 }
                             </script>
                         </div>
-                    </div>
+                    </div> -->
                     <p>원본 가사</p>
                     <textarea
                         id="original_textarea"
