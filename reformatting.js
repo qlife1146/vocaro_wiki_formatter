@@ -236,9 +236,14 @@ function alert_formatting(alert_list) {
 }
 
 function add_composer_textbox() {
+    const composerParent = document.getElementById("composer_parent");
     const original = document.getElementById("composer_div");
     const clone = original.cloneNode(true);
-    original.after(clone);
+    const clonedTextBox = clone.querySelector(".composer_textbox");
+    clonedTextBox.value = "";
+
+    const lastComposer = composerParent.lastElementChild;
+    composerParent.insertBefore(clone, lastComposer.nextSibling);
 }
 
 function rmv_composer_textbox() {
@@ -249,22 +254,33 @@ function rmv_composer_textbox() {
 }
 
 function add_writer_textbox() {
+    const writerParent = document.getElementById("writer_parent");
     const original = document.getElementById("writer_div");
     const clone = original.cloneNode(true);
-    original.after(clone);
+    const clonedTextBox = clone.querySelector(".writer_textbox");
+    clonedTextBox.value = "";
+
+    const lastWriter = writerParent.lastElementChild;
+    writerParent.insertBefore(clone, lastWriter.nextSibling);
 }
 
 function rmv_writer_textbox() {
     const parent = document.getElementById("writer_parent");
+    parent.removeChild(parent.lastChild);
     if (parent.childElementCount > 1) {
         parent.removeChild(parent.lastChild);
     }
 }
 
 function add_vocaro_textbox() {
+    const vocaroParent = document.getElementById("vocaro_parent");
     const original = document.getElementById("vocaro_div");
     const clone = original.cloneNode(true);
-    original.after(clone);
+    const clonedTextBox = clone.querySelector(".vocaro_textbox");
+    clonedTextBox.value = "";
+
+    const lastVocaro = vocaroParent.lastElementChild;
+    vocaroParent.insertBefore(clone, lastVocaro.nextSibling);
 }
 
 function rmv_vocaro_textbox() {
@@ -276,8 +292,6 @@ function rmv_vocaro_textbox() {
 
 function link_formatting() {
     let link = document.getElementById("video_id_textbox").value;
-    //https://www.nicovideo.jp/watch/sm41728811
-    //https://www.youtube.com/watch?v=ADaOeXJnH7c
 
     if (link.includes("youtube")) {
         return link.substr(-11);
