@@ -90,6 +90,14 @@ button:hover {
 
 button.copy {}
 
+ul>span {
+	font-weight: bold;
+}
+
+li {
+	list-style: none;
+}
+
 /* Scrollbar */
 
 ::-webkit-scrollbar {

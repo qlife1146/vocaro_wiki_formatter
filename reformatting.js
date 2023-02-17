@@ -10,7 +10,7 @@ document.addEventListener("keydown", function (event) {
 window.onload = function () {
     //버전관리 부분
     //1.8.1(23.02.15~): 정리
-    const version = "v1.8.2"; //패치노트 안내
+    const version = "v1.8.3"; //패치노트 안내
     document.getElementById("version").innerHTML = `<h4 class='version' id='version'>${version}</h4`;
 
     //input_text의 display 여부
@@ -235,9 +235,9 @@ function rmv_textbox(parentId) {
 function link_formatting() {
     let link = document.getElementById("video_id_textbox").value;
 
-    if (link.includes("youtube")) {
+    if (link.includes("youtube") || link.includes("youtu")) {
         return link.substr(-11);
-    } else if (link.includes("nicovideo")) {
+    } else if (link.includes("nicovideo" || link.includes("nico"))) {
         return link.substr(-10);
     } else {
         return link;
