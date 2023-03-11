@@ -90,6 +90,14 @@ button:hover {
 
 button.copy {}
 
+.important {
+	font-weight: bold;
+}
+
+.class-span {
+	text-decoration: under;
+}
+
 ul>span {
 	font-weight: bold;
 }
