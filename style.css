@@ -91,7 +91,10 @@ button:hover {
 button.copy {}
 
 .important {
+	display: flex;
+	flex-direction: column;
 	font-weight: bold;
+	align-items: center;
 }
 
 ul>span {
