@@ -44,21 +44,23 @@
                         <option value="false">영상 없음</option>
                     </select>
                     <p>영상 아이디(링크 전체도 가능)</p>
-                    <ul>
-                        <span>예시</span>
-                        <li>
-                            <span>https://www.youtube.com/watch?v=abcdefghijk</span>
-                        </li>
-                        <li>
-                            <span>https://youtu.be/abcdefghijk</span>
-                        </li>
-                        <li>
-                            <span>https://www.nicovideo.jp/watch/abcdefghij</span>
-                        </li>
-                        <li>
-                            <span>https://nico.ms/abcdefghij</span>
-                        </li>
-                    </ul>
+                    <details>
+                        <summary>예시</summary>
+                        <ul>
+                            <li>
+                                <span>https://www.youtube.com/watch?v=abcdefghijk</span>
+                            </li>
+                            <li>
+                                <span>https://youtu.be/abcdefghijk</span>
+                            </li>
+                            <li>
+                                <span>https://www.nicovideo.jp/watch/abcdefghij</span>
+                            </li>
+                            <li>
+                                <span>https://nico.ms/abcdefghij</span>
+                            </li>
+                        </ul>
+                    </details>
                     <div class="tooltip-container">
                         <input
                             type="text"
@@ -68,20 +70,22 @@
                             title="링크 전체를 넣어도 적용됩니다!"
                         />
                     </div>
-                    <div class="important">
-                        <li>자동 완성이 적용된 곳은 결과가 영어로 나오는 것이 올바른 양식입니다.</li>
-                        <li>자동 완성이 되지 않는 아티스트는 앞에 '<u>artist:</u>'를 붙여주세요.<br />예시: test_wiki → <u>artist:</u>test_wiki</li>
+                    <div class="notes">
+                        자동 완성이 적용된 곳은 결과가 영어로 나오는 것이 올바른 양식입니다. 자동 완성이 되지 않는 아티스트는 앞에 '<span style="text-decoration: underline">artist:</span>'를 붙여주세요.<br />예시: test_wiki → <span style="text-decoration: underline">artist:</span>test_wiki
                     </div>
+
                     <p>작곡가</p>
                     <button
                         type="button"
                         onclick="add_textbox('composer_parent', 'composer_div', 'composer_textbox', 'artist_list', artist_names, artist_links)"
+                        class="plus"
                     >
                         +
                     </button>
                     <button
                         type="button"
                         onclick="rmv_textbox('composer_parent')"
+                        class="minus"
                     >
                         -
                     </button>
@@ -113,12 +117,14 @@
                     <button
                         type="button"
                         onclick="add_textbox('writer_parent', 'writer_div', 'writer_textbox', 'artist_list', [], [])"
+                        class="plus"
                     >
                         +
                     </button>
                     <button
                         type="button"
                         onclick="rmv_textbox('writer_parent')"
+                        class="minus"
                     >
                         -
                     </button>
@@ -150,12 +156,14 @@
                     <button
                         type="button"
                         onclick="add_textbox('vocaro_parent', 'vocaro_div', 'vocaro_textbox', 'vocaro_list', vocaro_name_list, vocaro_link_list)"
+                        class="plus"
                     >
                         +
                     </button>
                     <button
                         type="button"
                         onclick="rmv_textbox('vocaro_parent')"
+                        class="minus"
                     >
                         -
                     </button>
@@ -182,113 +190,6 @@
                             </script>
                         </div>
                     </div>
-                    <!-- <p>작곡가</p>
-                    <button
-                        id="add_button"
-                        type="button"
-                        onclick="add_composer_textbox()"
-                    >
-                        +
-                    </button>
-                    <button
-                        id="rmv_button"
-                        type="button"
-                        onclick="rmv_composer_textbox()"
-                    >
-                        -
-                    </button>
-                    <div id="composer_parent">
-                        <div
-                            id="composer_div"
-                            class="composer_div"
-                        >
-                            <input
-                                list="artist_list"
-                                id="composer_textbox"
-                                class="composer_textbox"
-                                autocomplete="off"
-                            />
-                            <datalist id="artist_list"></datalist>
-                            <script>
-                                for (let i = 0; i < artist_names.length; i++) {
-                                    let x = document.getElementById("artist_list");
-                                    let opt = document.createElement("option");
-                                    opt.value = artist_links[i];
-                                    opt.label = artist_names[i];
-                                    document.getElementById("artist_list").append(opt);
-                                }
-                            </script>
-                        </div>
-                    </div>
-
-                    <p>작사가</p>
-                    <button
-                        id="add_button"
-                        type="button"
-                        onclick="add_writer_textbox()"
-                    >
-                        +
-                    </button>
-                    <button
-                        id="rmv_button"
-                        type="button"
-                        onclick="rmv_writer_textbox()"
-                    >
-                        -
-                    </button>
-                    <div id="writer_parent">
-                        <div
-                            id="writer_div"
-                            class="writer_div"
-                        >
-                            <input
-                                list="artist_list"
-                                id="writer_textbox"
-                                class="writer_textbox"
-                                autocomplete="off"
-                            />
-                            <datalist id="artist_list"></datalist>
-                        </div>
-                    </div>
-
-                    <p>가수</p>
-                    <button
-                        id="add_button"
-                        type="button"
-                        onclick="add_vocaro_textbox()"
-                    >
-                        +
-                    </button>
-                    <button
-                        id="rmv_button"
-                        type="button"
-                        onclick="rmv_vocaro_textbox()"
-                    >
-                        -
-                    </button>
-                    <div id="vocaro_parent">
-                        <div
-                            id="vocaro_div"
-                            class="vocaro_div"
-                        >
-                            <input
-                                list="vocaro_list"
-                                id="vocaro_textbox"
-                                class="vocaro_textbox"
-                                autocomplete="off"
-                            />
-                            <datalist id="vocaro_list"></datalist>
-                            <script>
-                                for (let i = 0; i < vocaro_link_list.length; i++) {
-                                    let x = document.getElementById("vocaro_list");
-                                    let opt = document.createElement("option");
-                                    opt.value = vocaro_link_list[i];
-                                    opt.label = vocaro_name_list[i];
-                                    document.getElementById("vocaro_list").append(opt);
-                                }
-                            </script>
-                        </div>
-                    </div> -->
                     <p>원본 가사</p>
                     <textarea
                         id="original_textarea"
@@ -309,12 +210,6 @@
                 >
                     초기화
                 </button>
-                <!-- <button
-                    onclick="redo()"
-                    class="redo"
-                >
-                    되돌리기
-                </button> -->
                 <button
                     onclick="formatting_with_information()"
                     class="formatting_with_information"
@@ -323,7 +218,7 @@
                 </button>
             </div>
             <br />
-            <p>ctrl(cmd)+space로도 변환이 가능합니다.</p>
+            <p>ctrl+space로도 변환이 가능합니다.</p>
             <p>꼭 미리보기를 통해 작곡가/작사가/가수의 링크가 제대로 작동하는지 확인해 주세요.</p>
             <div class="textarea">
                 <form>

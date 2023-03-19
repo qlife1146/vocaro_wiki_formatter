@@ -121,7 +121,7 @@ function formatting_with_information() {
     if (writer_text == "") {
         alert_list.push("작사가 이름 없음");
     } else {
-        info_format += '    [[hcell class="composer-cell"]] 작사 [[/hcell]]\n' + "    [[cell]]\n";
+        info_format += '    [[hcell class="writer-cell"]] 작사 [[/hcell]]\n' + "    [[cell]]\n";
         for (let i = 0; i < writer_text.length; i++) {
             if (writer_text[i].value !== "") {
                 info_format += "        [[[" + writer_text[i].value + "|]]]\n";
