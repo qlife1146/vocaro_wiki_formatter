@@ -140,15 +140,6 @@
                                 autocomplete="off"
                             />
                             <datalist id="artist_list"></datalist>
-                            <script>
-                                for (let i = 0; i < artist_names.length; i++) {
-                                    let x = document.getElementById("artist_list");
-                                    let opt = document.createElement("option");
-                                    opt.value = artist_links[i];
-                                    opt.label = artist_names[i];
-                                    document.getElementById("artist_list").append(opt);
-                                }
-                            </script>
                         </div>
                     </div>
 
@@ -185,6 +176,7 @@
                                     let opt = document.createElement("option");
                                     opt.value = vocaro_link_list[i];
                                     opt.label = vocaro_name_list[i];
+                                    console.log(opt.value, opt.label);
                                     document.getElementById("vocaro_list").append(opt);
                                 }
                             </script>
