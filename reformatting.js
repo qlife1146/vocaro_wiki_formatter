@@ -10,7 +10,7 @@ document.addEventListener("keydown", function (event) {
 window.onload = function () {
     //버전관리 부분
     //1.8.5(23.03.12~): 경고/권고 추가
-    const version = "v1.8.5"; //패치노트 안내
+    const version = "v1.9.0"; //패치노트 안내
     document.getElementById("version").innerHTML = `<h4 class='version' id='version'>${version}</h4`;
 
     //input_text의 display 여부
@@ -34,8 +34,14 @@ function formatting() {
         }
     }
 
+    if (result_list.length % 3 !== 0) {
+        alert("가사의 형식이 세 줄 형식(일어|음역|가사)이 아닙니다.\n"+
+        "이 형식이 어긋나면 오자 검출이 어렵습니다.\n"+
+        "영상 속 글의 번역(일어+번역만 있는 형태)은 잠시 빼주세요.\n");
+    }
+
     //가나 대조표에 의거한 오자 수정
-    for (let i = 0; i < result_list.length; i++) {
+    for (let i = 1; i < result_list.length; i += 3) {
         result_list[i] = result_list[i]
             .replace(/챠/g, "차")
             .replace(/챤/g, "찬")
@@ -246,6 +252,6 @@ function link_formatting() {
 
 function debug() {
     let a = document.querySelectorAll(".vocaro_textbox");
-    console.log(a.length);
-    console.log(a[0].value);
+    // console.log(a.length);
+    // console.log(a[0].value);
 }
