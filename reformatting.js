@@ -9,7 +9,7 @@
 
 window.onload = function () {
     //버전관리 부분
-    const version = "v1.10.0"; //맞춤법 검사기를 위한 편의성 패치
+    const version = "v1.10.1"; //맞춤법 검사기를 위한 편의성 패치
     document.getElementById("version").innerHTML = `<h4 class='version' id='version'>${version}</h4`;
 
     //input_text의 display 여부
@@ -46,7 +46,8 @@ function formatting() {
     let spellCheck_list = spellCheck_text.split("\n");
 
     if (spellCheck_text != "") {
-        if(result_list / 3 == spellCheck_list) {
+        console.log(result_list.length / 3 == spellCheck_list.length)
+        if(result_list.length / 3 == spellCheck_list.length) {
             for (let i = 0; i < spellCheck_list.length; i++) {
                 result_list[i * 3 + 2] = spellCheck_list[i];
             }
@@ -295,9 +296,18 @@ function for_spell_check() {
 
 //클립보드 복사 기능
 function copy_to_clipboard(where) {
+    // const text = textarea.value;
+    // navigator.clipboard.writeText(text);
+    // const textarea = document.getElementById(where).value;
+    // textarea.select();
+    // document.execCommand("copy");
+    // textarea.setSelectionRange(0, 0);
     const textarea = document.getElementById(where);
-    const text = textarea.value;
-    navigator.clipboard.writeText(text);
+    console.log(textarea)
+    textarea.select();
+    // textarea.setSelectionRange(0, 99999);
+    document.execCommand("copy");
+    textarea.setSelectionRange(0, 0);
 }
 
 function debug() {
