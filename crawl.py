@@ -57,10 +57,10 @@ for i in range(len(artist_links_tmp)):
 for i in range(len(vocaro_links_tmp)):
     vocaro_links.append(vocaro_links_tmp[i][1:])
 
-with open("artist_list.jsp", "w") as f:
+with open("artist_list.jsp", "w", encoding="utf-8") as f:
     f.write("const artist_names = " + str(artist_names) + '\n')
     f.write("const artist_links = " + str(artist_links) + '\n')
     
-with open("vocaro_list.jsp", "w") as f:
+with open("vocaro_list.jsp", "w", encoding="utf-8") as f:
     f.write("const vocaro_link_list = " + str(vocaro_links) + '\n')
-    f.write("const vocaro_name_list = " + str(vocaro_names) + '\n')
+    f.write("const vocaro_name_list = " + str(vocaro_names) + '\n') 

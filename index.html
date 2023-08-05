@@ -11,13 +11,12 @@
         <script src="vocaro_list.jsp"></script>
         <script src="artist_list.jsp"></script>
         <script src="reformatting.js"></script>
-
+    </head>
+    <body>
         <header>
             <h2 class="title">보카로 가사 위키 번역가 툴</h2>
             <h4 id="version"></h4>
         </header>
-    </head>
-    <body>
         <article>
             <div class="textarea">
                 <form>
@@ -47,17 +46,19 @@
                     <details>
                         <summary>예시</summary>
                         <ul>
+                            기본적으로는 유튜브/니코동의 공유 버튼을 이용해서 나오는 주소를 권장합니다<div class=""></div>
+                            하지만 맨 뒤의 아이디를 기준으로 하기에 앞이 약간씩 달라도 적용이 될 수는 있으나 안 될 경우도 있습니다.
                             <li>
-                                <span>https://www.youtube.com/watch?v=abcdefghijk</span>
+                                <span>https://www.youtube.com/watch?v=a1b2c3d4e5f</span>
                             </li>
                             <li>
-                                <span>https://youtu.be/abcdefghijk</span>
+                                <span>https://youtu.be/a1b2c3d4e5f</span>
                             </li>
                             <li>
-                                <span>https://www.nicovideo.jp/watch/abcdefghij</span>
+                                <span>https://www.nicovideo.jp/watch/sm12345678</span>
                             </li>
                             <li>
-                                <span>https://nico.ms/abcdefghij</span>
+                                <span>https://nico.ms/12345678</span>
                             </li>
                         </ul>
                     </details>
@@ -176,7 +177,6 @@
                                     let opt = document.createElement("option");
                                     opt.value = vocaro_link_list[i];
                                     opt.label = vocaro_name_list[i];
-                                    console.log(opt.value, opt.label);
                                     document.getElementById("vocaro_list").append(opt);
                                 }
                             </script>
@@ -187,20 +187,26 @@
                         id="original_textarea"
                         placeholder="가사를 입력해 주세요."
                     ></textarea>
+
+                    <p>맞춤법 수정용</p>
+                    <textarea
+                        id="spellCheck_textarea"
+                        placeholder="수정할 수 있는 칸입니다."
+                    ></textarea>
                 </form>
             </div>
             <div class="buttons">
-                <!-- <button
-                    onclick="formatting()"
-                    class="formatting"
-                >
-                    변환
-                </button> -->
                 <button
                     onclick="reset()"
                     class="reset"
                 >
                     초기화
+                </button>
+                <button
+                    onclick="for_spell_check('spellCheck_textarea')"
+                    class="for_spell_check"
+                >
+                    맞춤법 검사용 가사
                 </button>
                 <button
                     onclick="formatting_with_information()"
@@ -210,7 +216,7 @@
                 </button>
             </div>
             <br />
-            <p>ctrl+space로도 변환이 가능합니다.</p>
+            <!-- <p>ctrl+space로도 변환이 가능합니다.</p> -->
             <p>꼭 미리보기를 통해 작곡가/작사가/가수의 링크가 제대로 작동하는지 확인해 주세요.</p>
             <div class="textarea">
                 <form>
@@ -222,13 +228,13 @@
                     ></textarea>
                 </form>
             </div>
-            <div class="buttons">
+            <!-- <div class="buttons">
                 <button
                     onclick="copy_to_clipboard()"
                     class="copy_to_clipboard"
                 >
                     클립보드로 복사
-                </button>
+                </button> -->
             </div>
             <p>
                 ※ 가나 대조표에 맞춰 오타가 수정됩니다(예: 쟌 → 잔).<br />다만 단순 글자 비교이기에 외래어에는 대응하지 않습니다. 주의 바랍니다. <br />자세한 사항은
@@ -248,6 +254,6 @@
                 <a>문제가 있으면 꼭 디스코드에 제보해 주세요.</a>
             </p>
         </article>
+        <!-- <button id="debug_button" onclick="debug()">debug</button> -->
     </body>
-    <!-- <button id="debug_button" onclick="debug()">debug</button> -->
 </html>
