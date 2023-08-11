@@ -10,11 +10,18 @@
 window.onload = function () {
     //버전관리 부분
     const version = "v1.10.1"; //맞춤법 검사기를 위한 편의성 패치
-    document.getElementById("version").innerHTML = `<h4 class='version' id='version'>${version}</h4`;
+    document.getElementById(
+        "version"
+    ).innerHTML = `<h4 class='version' id='version'>${version}</h4`;
 
     //input_text의 display 여부
     document.getElementById("video_id_textbox").disabled = false;
-}
+
+    const textarea = document.getElementById("spellCheck_textarea");
+    textarea.addEventListener("input", function () {
+        formatting_with_information();
+    });
+};
 
 //빈 줄 삭제
 function remove_blank_line(original_list) {
@@ -26,15 +33,18 @@ function remove_blank_line(original_list) {
     }
 
     if (result_list.length % 3 !== 0) {
-        alert("가사의 형식이 세 줄 형식(일어|음역|가사)이 아닙니다.\n"+
-        "이 형식이 어긋나면 오자 검출이 어렵습니다.\n"+
-        "영상 속 글의 번역(일어+번역만 있는 형태)은 잠시 빼주세요.\n");
+        alert(
+            "가사의 형식이 세 줄 형식(일어|음역|가사)이 아닙니다.\n" +
+                "이 형식이 어긋나면 오자 검출이 어렵습니다.\n" +
+                "영상 속 글의 번역(일어+번역만 있는 형태)은 잠시 빼주세요.\n"
+        );
     }
     return result_list;
 }
 
-//[변환 버튼]가사를 서식에 맞춰주는 함수
+// [변환 버튼]가사를 서식에 맞춰주는 함수
 function formatting() {
+    for_spell_check();
     //html 변수
     const original_text = document.getElementById("original_textarea").value; //작성한 가사
     let finish_text = document.getElementById("finish_textarea").value; //완성된 가사
@@ -46,16 +56,17 @@ function formatting() {
     let spellCheck_list = spellCheck_text.split("\n");
 
     if (spellCheck_text != "") {
-        console.log(result_list.length / 3 == spellCheck_list.length)
-        if(result_list.length / 3 == spellCheck_list.length) {
+        if (result_list.length / 3 == spellCheck_list.length) {
             for (let i = 0; i < spellCheck_list.length; i++) {
                 result_list[i * 3 + 2] = spellCheck_list[i];
             }
         } else {
-            alert("맞춤법 검사용의 줄이 원본 가사와 맞지 않습니다.\n"+
-            "'맞춤법 검사용 가사' 버튼을 다시 눌러 진행하세요.");
+            alert(
+                "맞춤법 검사용의 줄이 원본 가사와 맞지 않습니다.\n" +
+                    "'맞춤법 검사용 가사' 버튼을 다시 눌러 진행하세요."
+            );
         }
-    } else if(spellCheck_text.value > 0) {
+    } else if (spellCheck_text.value > 0) {
         alert("맞춤법 검사용을 사용하지 않으실거면 확실히 비워주세요.");
     }
 
@@ -95,16 +106,20 @@ function formatting() {
 
     finish_text = "";
     for (let i = 0; i < result_list.length; i++) {
-        i < result_list.length ? (finish_text += "|| " + result_list[i] + " ||\n") : (finish_textarea += "|| " + result_list[i] + " ||");
+        i < result_list.length
+            ? (finish_text += "|| " + result_list[i] + " ||\n")
+            : (finish_text += "|| " + result_list[i] + " ||");
     }
     document.getElementById("finish_textarea").value = finish_text;
     document.getElementById("finish_textarea").value = finish_text.slice(0, -1);
-    
+
     return finish_text;
 }
 
 //[정보까지 변환 버튼]정보까지 함께 서식에 맞춰주는 함수
 function formatting_with_information() {
+    const spellCheck_textarea = document.getElementById("spellCheck_textarea");
+    // spellCheck_textarea.value = "";
     const finish_textarea = document.getElementById("finish_textarea");
 
     let song_title_text = document.getElementById("song_title_textbox").value;
@@ -126,7 +141,14 @@ function formatting_with_information() {
         if (video_id_text == "") {
             alert_list.push("영상 아이디 없음");
         } else {
-            info_format += "|videotype=" + video_type_text + "\n" + "|video-id=" + video_id_text + "\n" + "]]\n";
+            info_format +=
+                "|videotype=" +
+                video_type_text +
+                "\n" +
+                "|video-id=" +
+                video_id_text +
+                "\n" +
+                "]]\n";
         }
     } else if (video_type_text == "novideo" || video_type_text == "false") {
         info_format += "|videotype=" + video_type_text + "\n" + "]]\n";
@@ -136,10 +158,13 @@ function formatting_with_information() {
     if (composer_text == "") {
         alert_list.push("작곡가 이름 없음");
     } else {
-        info_format += '    [[hcell class="composer-cell"]] 작곡 [[/hcell]]\n' + "    [[cell]]\n";
+        info_format +=
+            '    [[hcell class="composer-cell"]] 작곡 [[/hcell]]\n' +
+            "    [[cell]]\n";
         for (let i = 0; i < composer_text.length; i++) {
             if (composer_text[i].value !== "") {
-                info_format += "        [[[" + composer_text[i].value + "|]]]\n";
+                info_format +=
+                    "        [[[" + composer_text[i].value + "|]]]\n";
             }
         }
         info_format += "    [[/cell]][[/row]][[row]]\n";
@@ -148,7 +173,9 @@ function formatting_with_information() {
     if (writer_text == "") {
         alert_list.push("작사가 이름 없음");
     } else {
-        info_format += '    [[hcell class="writer-cell"]] 작사 [[/hcell]]\n' + "    [[cell]]\n";
+        info_format +=
+            '    [[hcell class="writer-cell"]] 작사 [[/hcell]]\n' +
+            "    [[cell]]\n";
         for (let i = 0; i < writer_text.length; i++) {
             if (writer_text[i].value !== "") {
                 info_format += "        [[[" + writer_text[i].value + "|]]]\n";
@@ -160,13 +187,18 @@ function formatting_with_information() {
     if (vocaro_text == "") {
         alert_list.push("보카로 이름 없음");
     } else {
-        info_format += '    [[hcell class="vocaro-cell"]] 노래 [[/hcell]]\n' + "    [[cell]]\n";
+        info_format +=
+            '    [[hcell class="vocaro-cell"]] 노래 [[/hcell]]\n' +
+            "    [[cell]]\n";
         for (let i = 0; i < vocaro_text.length; i++) {
             if (vocaro_text[i].value !== "") {
                 info_format += "        [[[" + vocaro_text[i].value + "|]]]\n";
             }
         }
-        info_format += "    [[/cell]]\n" + "[[/row]]\n" + "[[include component:info-table-end]]\n\n";
+        info_format +=
+            "    [[/cell]]\n" +
+            "[[/row]]\n" +
+            "[[include component:info-table-end]]\n\n";
     }
 
     if (alert_list.length > 0) {
@@ -177,7 +209,7 @@ function formatting_with_information() {
 
     let lyrics = formatting();
 
-    finish_textarea.value = ""
+    finish_textarea.value = "";
     finish_textarea.value = info_format + lyrics;
 
     finish_textarea.value = finish_textarea.value.slice(0, -1);
@@ -189,7 +221,7 @@ function formatting_with_information() {
 function reset() {
     let original = document.getElementById("original_textarea");
     let finish = document.getElementById("finish_textarea");
-    let spell = document.getElementById("spellCheck_textarea")
+    let spell = document.getElementById("spellCheck_textarea");
     let title = document.getElementById("song_title_textbox");
     let videoId = document.getElementById("video_id_textbox");
     let composer = document.getElementById("composer_textbox");
@@ -229,12 +261,21 @@ function type_realtime() {
 function alert_formatting(alert_list) {
     let output_string = "";
     for (let i = 0; i < alert_list.length; i++) {
-        i < alert_list.length ? (output_string += alert_list[i] + "\n") : (output_string += alert_list[i]);
+        i < alert_list.length
+            ? (output_string += alert_list[i] + "\n")
+            : (output_string += alert_list[i]);
     }
     return output_string;
 }
 
-function add_textbox(parentId, originalId, textboxClass, datalistId, labelList, valueList) {
+function add_textbox(
+    parentId,
+    originalId,
+    textboxClass,
+    datalistId,
+    labelList,
+    valueList
+) {
     const parent = document.getElementById(parentId);
     const original = document.getElementById(originalId);
     const clone = original.cloneNode(true);
@@ -258,16 +299,16 @@ function link_formatting() {
     let video_type = "";
 
     if (video_type_text == "nicovideo") {
-        if(link.includes('watch')) {
-            video_type = link.substring(link.lastIndexOf('/') + 1);
+        if (link.includes("watch")) {
+            video_type = link.substring(link.lastIndexOf("/") + 1);
         } else {
-            video_type = "sm" + link.substring(link.lastIndexOf('/') + 1);
+            video_type = "sm" + link.substring(link.lastIndexOf("/") + 1);
         }
-    } else if(video_type_text == "youtube") {
-        if(link.includes('watch')) {
-            video_type = link.substring(link.lastIndexOf('=') + 1);
+    } else if (video_type_text == "youtube") {
+        if (link.includes("watch")) {
+            video_type = link.substring(link.lastIndexOf("=") + 1);
         } else {
-            video_type = link.substring(link.lastIndexOf('/') + 1);
+            video_type = link.substring(link.lastIndexOf("/") + 1);
         }
     }
     return video_type;
@@ -276,22 +317,22 @@ function link_formatting() {
 //맞춤법 검사기용
 function for_spell_check() {
     const spellCheck_textarea = document.getElementById("spellCheck_textarea");
-    spellCheck_textarea.value = "";
+    // spellCheck_textarea.value = "";
     let original_text = document.getElementById("original_textarea").value; //작성한 가사
     let original_list = original_text.split("\n"); //작성한 가사를 담은 리스트
     let result_list = remove_blank_line(original_list); //완성된 가사를 담을 리스트
-    let spell_list = []
+    let spell_list = [];
 
     for (let i = 2; i < result_list.length; i += 3) {
         spell_list.push(result_list[i]);
     }
-    
+
     for (let i = 0; i < spell_list.length; i++) {
         spellCheck_textarea.value += spell_list[i] + "\n";
     }
 
     spellCheck_textarea.value = spellCheck_textarea.value.slice(0, -1);
-    copy_to_clipboard("spellCheck_textarea")
+    copy_to_clipboard("spellCheck_textarea");
 }
 
 //클립보드 복사 기능
@@ -303,7 +344,6 @@ function copy_to_clipboard(where) {
     // document.execCommand("copy");
     // textarea.setSelectionRange(0, 0);
     const textarea = document.getElementById(where);
-    console.log(textarea)
     textarea.select();
     // textarea.setSelectionRange(0, 99999);
     document.execCommand("copy");
