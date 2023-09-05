@@ -338,8 +338,12 @@ function link_formatting() {
                 link = link.replace(/\?si=.*$/, "");
                 link = link.substring(link.lastIndexOf("/") + 1);
             } else if (link.includes("watch?")) {
-                link = link.replace(/&list=.*/, "");
+                if (link.includes("&list=")){
+                    link = link.replace(/&list=.*/, "");
+                }
                 link = link.substring(link.lastIndexOf("v=") + 1);
+            } else {
+                link = link.substring(link.lastIndexOf("/") + 1);
             }
         }
     }
