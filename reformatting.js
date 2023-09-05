@@ -9,7 +9,7 @@
 
 window.onload = function () {
     //버전관리 부분
-    const version = "v1.10.1"; //맞춤법 검사기를 위한 편의성 패치
+    const version = "v1.11.0"; //맞춤법 검사기를 위한 편의성 패치
     document.getElementById(
         "version"
     ).innerHTML = `<h4 class='version' id='version'>${version}</h4`;
@@ -118,8 +118,6 @@ function formatting() {
 
 //[정보까지 변환 버튼]정보까지 함께 서식에 맞춰주는 함수
 function formatting_with_information() {
-    const spellCheck_textarea = document.getElementById("spellCheck_textarea");
-    // spellCheck_textarea.value = "";
     const finish_textarea = document.getElementById("finish_textarea");
 
     let song_title_text = document.getElementById("song_title_textbox").value;
@@ -131,6 +129,8 @@ function formatting_with_information() {
 
     let alert_list = [];
     let info_format = "+ 정보\n" + "[[include component:info-table-start\n";
+
+    console.log(composer_text);
 
     if (song_title_text == "") {
         alert_list.push("음악 제목 없음");
@@ -155,54 +155,93 @@ function formatting_with_information() {
     }
     info_format += "[[row]]\n";
 
-    if (composer_text == "") {
-        alert_list.push("작곡가 이름 없음");
-    } else {
-        info_format +=
-            '    [[hcell class="composer-cell"]] 작곡 [[/hcell]]\n' +
-            "    [[cell]]\n";
-        for (let i = 0; i < composer_text.length; i++) {
-            if (composer_text[i].value !== "") {
-                info_format +=
-                    "        [[[" + composer_text[i].value + "|]]]\n";
-            }
-        }
-        info_format += "    [[/cell]][[/row]][[row]]\n";
-    }
+    // if (composer_text == "") {
+    //     alert_list.push("작곡가 이름 없음");
+    // } else {
+    //     info_format +=
+    //         '    [[hcell class="composer-cell"]] 작곡 [[/hcell]]\n' +
+    //         "    [[cell]]\n";
+    //     for (let i = 0; i < composer_text.length; i++) {
+    //         if (composer_text[i].value !== "") {
+    //             info_format +=
+    //                 "        [[[" + composer_text[i].value + "|]]]\n";
+    //         }
+    //     }
+    //     info_format += "    [[/cell]][[/row]][[row]]\n";
+    // }
 
-    if (writer_text == "") {
-        alert_list.push("작사가 이름 없음");
-    } else {
-        info_format +=
-            '    [[hcell class="writer-cell"]] 작사 [[/hcell]]\n' +
-            "    [[cell]]\n";
-        for (let i = 0; i < writer_text.length; i++) {
-            if (writer_text[i].value !== "") {
-                info_format += "        [[[" + writer_text[i].value + "|]]]\n";
-            }
+    info_format +=
+        '    [[hcell class="composer-cell"]] 작곡 [[/hcell]]\n' +
+        "    [[cell]]\n";
+    for (let i = 0; i < composer_text.length; i++) {
+        if (composer_text[i].value !== "") {
+            info_format += "        [[[" + composer_text[i].value + "|]]]\n";
+        } else {
+            alert_list.push("작곡가 이름 없음");
         }
-        info_format += "    [[/cell]][[/row]][[row]]\n";
     }
+    info_format += "    [[/cell]][[/row]][[row]]\n";
 
-    if (vocaro_text == "") {
-        alert_list.push("보카로 이름 없음");
-    } else {
-        info_format +=
-            '    [[hcell class="vocaro-cell"]] 노래 [[/hcell]]\n' +
-            "    [[cell]]\n";
-        for (let i = 0; i < vocaro_text.length; i++) {
-            if (vocaro_text[i].value !== "") {
-                info_format += "        [[[" + vocaro_text[i].value + "|]]]\n";
-            }
+    // if (writer_text.value == "") {
+    //     alert_list.push("작사가 이름 없음");
+    // } else {
+    //     info_format +=
+    //         '    [[hcell class="writer-cell"]] 작사 [[/hcell]]\n' +
+    //         "    [[cell]]\n";
+    //     for (let i = 0; i < writer_text.length; i++) {
+    //         if (writer_text[i].value !== "") {
+    //             info_format += "        [[[" + writer_text[i].value + "|]]]\n";
+    //         }
+    //     }
+    //     info_format += "    [[/cell]][[/row]][[row]]\n";
+    // }
+
+    info_format +=
+        '    [[hcell class="writer-cell"]] 작사 [[/hcell]]\n' +
+        "    [[cell]]\n";
+    for (let i = 0; i < writer_text.length; i++) {
+        if (writer_text[i].value !== "") {
+            info_format += "        [[[" + writer_text[i].value + "|]]]\n";
+        } else {
+            alert_list.push("작사가 이름 없음");
         }
-        info_format +=
-            "    [[/cell]]\n" +
-            "[[/row]]\n" +
-            "[[include component:info-table-end]]\n\n";
     }
+    info_format += "    [[/cell]][[/row]][[row]]\n";
+
+    // if (vocaro_text.value == "") {
+    //     alert_list.push("보카로 이름 없음");
+    // } else {
+    //     info_format +=
+    //         '    [[hcell class="vocaro-cell"]] 노래 [[/hcell]]\n' +
+    //         "    [[cell]]\n";
+    //     for (let i = 0; i < vocaro_text.length; i++) {
+    //         if (vocaro_text[i].value !== "") {
+    //             info_format += "        [[[" + vocaro_text[i].value + "|]]]\n";
+    //         }
+    //     }
+    //     info_format +=
+    //         "    [[/cell]]\n" +
+    //         "[[/row]]\n" +
+    //         "[[include component:info-table-end]]\n\n";
+    // }
+
+    info_format +=
+        '    [[hcell class="vocaro-cell"]] 노래 [[/hcell]]\n' +
+        "    [[cell]]\n";
+    for (let i = 0; i < vocaro_text.length; i++) {
+        if (vocaro_text[i].value !== "") {
+            info_format += "        [[[" + vocaro_text[i].value + "|]]]\n";
+        } else {
+            alert_list.push("보카로 이름 없음");
+        }
+    }
+    info_format +=
+        "    [[/cell]]\n" +
+        "[[/row]]\n" +
+        "[[include component:info-table-end]]\n\n";
 
     if (alert_list.length > 0) {
-        return alert(alert_formatting(alert_list));
+        alert(alert_formatting(alert_list));
     }
 
     info_format += "+ 가사\n";
@@ -268,14 +307,7 @@ function alert_formatting(alert_list) {
     return output_string;
 }
 
-function add_textbox(
-    parentId,
-    originalId,
-    textboxClass,
-    datalistId,
-    labelList,
-    valueList
-) {
+function add_textbox(parentId, originalId, textboxClass) {
     const parent = document.getElementById(parentId);
     const original = document.getElementById(originalId);
     const clone = original.cloneNode(true);
@@ -297,18 +329,27 @@ function link_formatting() {
     let link = document.getElementById("video_id_textbox").value;
     let video_type_text = document.getElementById("video_type_select").value;
     let video_type = "";
+    // console.log(typeof link);
 
-    if (video_type_text == "nicovideo") {
-        if (link.includes("watch")) {
-            video_type = link.substring(link.lastIndexOf("/") + 1);
-        } else {
-            video_type = "sm" + link.substring(link.lastIndexOf("/") + 1);
-        }
-    } else if (video_type_text == "youtube") {
-        if (link.includes("watch")) {
-            video_type = link.substring(link.lastIndexOf("=") + 1);
-        } else {
-            video_type = link.substring(link.lastIndexOf("/") + 1);
+    if (link !== "") {
+        if (video_type_text == "nicovideo") {
+            if (link.includes("watch")) {
+                video_type = link.substring(link.lastIndexOf("/") + 1);
+            } else {
+                video_type = "sm" + link.substring(link.lastIndexOf("/") + 1);
+            }
+        } else if (video_type_text == "youtube") {
+            if (link.includes("&t=")) {
+                link = link.replace(/&t=.*/, "");
+            }
+            if (link.includes("?si=")) {
+                link = link.replace(/\?si=.*/, "");
+            }
+            if (link.includes("watch")) {
+                video_type = link.substring(link.lastIndexOf("=") + 1);
+            } else {
+                video_type = link.substring(link.lastIndexOf("/") + 1);
+            }
         }
     }
     return video_type;
@@ -317,7 +358,6 @@ function link_formatting() {
 //맞춤법 검사기용
 function for_spell_check() {
     const spellCheck_textarea = document.getElementById("spellCheck_textarea");
-    // spellCheck_textarea.value = "";
     let original_text = document.getElementById("original_textarea").value; //작성한 가사
     let original_list = original_text.split("\n"); //작성한 가사를 담은 리스트
     let result_list = remove_blank_line(original_list); //완성된 가사를 담을 리스트
