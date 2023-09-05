@@ -9,7 +9,7 @@
 
 window.onload = function () {
     //버전관리 부분
-    const version = "v1.11.0"; //맞춤법 검사기를 위한 편의성 패치
+    const version = "v1.11.1"; //기능 롤백 및 유튜브 URL 주소 대응 추가
     document.getElementById(
         "version"
     ).innerHTML = `<h4 class='version' id='version'>${version}</h4`;
@@ -328,31 +328,22 @@ function rmv_textbox(parentId) {
 function link_formatting() {
     let link = document.getElementById("video_id_textbox").value;
     let video_type_text = document.getElementById("video_type_select").value;
-    let video_type = "";
     // console.log(typeof link);
 
     if (link !== "") {
         if (video_type_text == "nicovideo") {
-            if (link.includes("watch")) {
-                video_type = link.substring(link.lastIndexOf("/") + 1);
-            } else {
-                video_type = "sm" + link.substring(link.lastIndexOf("/") + 1);
-            }
+            link = link.replace(/.*\/watch\//, "").replace(/\?.*/, "");
         } else if (video_type_text == "youtube") {
-            if (link.includes("&t=")) {
-                link = link.replace(/&t=.*/, "");
-            }
             if (link.includes("?si=")) {
-                link = link.replace(/\?si=.*/, "");
-            }
-            if (link.includes("watch")) {
-                video_type = link.substring(link.lastIndexOf("=") + 1);
-            } else {
-                video_type = link.substring(link.lastIndexOf("/") + 1);
+                link = link.replace(/\?si=.*$/, "");
+                link = link.substring(link.lastIndexOf("/") + 1);
+            } else if (link.includes("watch?")) {
+                link = link.replace(/&list=.*/, "");
+                link = link.substring(link.lastIndexOf("v=") + 1);
             }
         }
     }
-    return video_type;
+    return link;
 }
 
 //맞춤법 검사기용
