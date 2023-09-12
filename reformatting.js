@@ -301,7 +301,10 @@ function link_formatting() {
                 if (link.includes("&list=")) {
                     link = link.replace(/&list=.*/, "");
                 }
-                link = link.substring(link.lastIndexOf("v=") + 1);
+                if (link.includes("&index=")) {
+                    link = link.reaplce(/&index=.*/, "");
+                }
+                link = link.substring(link.lastIndexOf("v=") + 2);
             } else {
                 link = link.substring(link.lastIndexOf("/") + 1);
             }
