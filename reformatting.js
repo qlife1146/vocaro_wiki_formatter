@@ -9,7 +9,7 @@
 
 window.onload = function () {
     //버전관리 부분
-    const version = "v1.11.1"; //기능 롤백 및 유튜브 URL 주소 대응 추가
+    const version = "v1.11.1d"; //기능 롤백 및 유튜브 URL 주소 대응 추가
     document.getElementById(
         "version"
     ).innerHTML = `<h4 class='version' id='version'>${version}</h4`;
@@ -18,9 +18,9 @@ window.onload = function () {
     document.getElementById("video_id_textbox").disabled = false;
 
     const textarea = document.getElementById("spellCheck_textarea");
-    textarea.addEventListener("input", function () {
-        formatting_with_information();
-    });
+    // textarea.addEventListener("input", function () {
+    //     formatting_with_information();
+    // });
 };
 
 //빈 줄 삭제
@@ -44,7 +44,7 @@ function remove_blank_line(original_list) {
 
 // [변환 버튼]가사를 서식에 맞춰주는 함수
 function formatting() {
-    for_spell_check();
+    // for_spell_check();
     //html 변수
     const original_text = document.getElementById("original_textarea").value; //작성한 가사
     let finish_text = document.getElementById("finish_textarea").value; //완성된 가사
@@ -130,8 +130,6 @@ function formatting_with_information() {
     let alert_list = [];
     let info_format = "+ 정보\n" + "[[include component:info-table-start\n";
 
-    console.log(composer_text);
-
     if (song_title_text == "") {
         alert_list.push("음악 제목 없음");
     } else {
@@ -155,21 +153,6 @@ function formatting_with_information() {
     }
     info_format += "[[row]]\n";
 
-    // if (composer_text == "") {
-    //     alert_list.push("작곡가 이름 없음");
-    // } else {
-    //     info_format +=
-    //         '    [[hcell class="composer-cell"]] 작곡 [[/hcell]]\n' +
-    //         "    [[cell]]\n";
-    //     for (let i = 0; i < composer_text.length; i++) {
-    //         if (composer_text[i].value !== "") {
-    //             info_format +=
-    //                 "        [[[" + composer_text[i].value + "|]]]\n";
-    //         }
-    //     }
-    //     info_format += "    [[/cell]][[/row]][[row]]\n";
-    // }
-
     info_format +=
         '    [[hcell class="composer-cell"]] 작곡 [[/hcell]]\n' +
         "    [[cell]]\n";
@@ -182,20 +165,6 @@ function formatting_with_information() {
     }
     info_format += "    [[/cell]][[/row]][[row]]\n";
 
-    // if (writer_text.value == "") {
-    //     alert_list.push("작사가 이름 없음");
-    // } else {
-    //     info_format +=
-    //         '    [[hcell class="writer-cell"]] 작사 [[/hcell]]\n' +
-    //         "    [[cell]]\n";
-    //     for (let i = 0; i < writer_text.length; i++) {
-    //         if (writer_text[i].value !== "") {
-    //             info_format += "        [[[" + writer_text[i].value + "|]]]\n";
-    //         }
-    //     }
-    //     info_format += "    [[/cell]][[/row]][[row]]\n";
-    // }
-
     info_format +=
         '    [[hcell class="writer-cell"]] 작사 [[/hcell]]\n' +
         "    [[cell]]\n";
@@ -207,23 +176,6 @@ function formatting_with_information() {
         }
     }
     info_format += "    [[/cell]][[/row]][[row]]\n";
-
-    // if (vocaro_text.value == "") {
-    //     alert_list.push("보카로 이름 없음");
-    // } else {
-    //     info_format +=
-    //         '    [[hcell class="vocaro-cell"]] 노래 [[/hcell]]\n' +
-    //         "    [[cell]]\n";
-    //     for (let i = 0; i < vocaro_text.length; i++) {
-    //         if (vocaro_text[i].value !== "") {
-    //             info_format += "        [[[" + vocaro_text[i].value + "|]]]\n";
-    //         }
-    //     }
-    //     info_format +=
-    //         "    [[/cell]]\n" +
-    //         "[[/row]]\n" +
-    //         "[[include component:info-table-end]]\n\n";
-    // }
 
     info_format +=
         '    [[hcell class="vocaro-cell"]] 노래 [[/hcell]]\n' +
@@ -270,8 +222,6 @@ function reset() {
     const check = confirm("초기화 진행을 원하면 [확인]을 눌러주세요.");
 
     if (check) {
-        original_tmp = original.value;
-        finish_tmp = finish.value;
         original.value = "";
         finish.value = "";
         spell.value = "";
@@ -280,8 +230,19 @@ function reset() {
         composer.value = "";
         writer.value = "";
         vocaro.value = "";
+
+        // removeAllTextboxAndContainer("composer_div");
+        // removeAllTextboxAndContainer("writer_div");
+        // removeAllTextboxAndContainer("vocaro_div");
     }
 }
+
+// function removeAllTextboxAndContainer(containerId) {
+//     const container = document.getElementById(containerId);
+//     while (container.childElementCount > 1) {
+//         container.removeChild(container.lastElementChild);
+//     }
+// }
 
 //비디오 타입 실시간 작동 함수
 function type_realtime() {
@@ -328,7 +289,6 @@ function rmv_textbox(parentId) {
 function link_formatting() {
     let link = document.getElementById("video_id_textbox").value;
     let video_type_text = document.getElementById("video_type_select").value;
-    // console.log(typeof link);
 
     if (link !== "") {
         if (video_type_text == "nicovideo") {
@@ -338,7 +298,7 @@ function link_formatting() {
                 link = link.replace(/\?si=.*$/, "");
                 link = link.substring(link.lastIndexOf("/") + 1);
             } else if (link.includes("watch?")) {
-                if (link.includes("&list=")){
+                if (link.includes("&list=")) {
                     link = link.replace(/&list=.*/, "");
                 }
                 link = link.substring(link.lastIndexOf("v=") + 1);
@@ -372,12 +332,6 @@ function for_spell_check() {
 
 //클립보드 복사 기능
 function copy_to_clipboard(where) {
-    // const text = textarea.value;
-    // navigator.clipboard.writeText(text);
-    // const textarea = document.getElementById(where).value;
-    // textarea.select();
-    // document.execCommand("copy");
-    // textarea.setSelectionRange(0, 0);
     const textarea = document.getElementById(where);
     textarea.select();
     // textarea.setSelectionRange(0, 99999);
