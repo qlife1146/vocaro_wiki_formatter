@@ -28,7 +28,7 @@
                         autocomplete="off"
                     />
                     <p>비디오 타입</p>
-                    <select
+                    <!-- <select
                         id="video_type_select"
                         onchange="type_realtime()"
                     >
@@ -41,7 +41,23 @@
                         <option value="youtube">유튜브</option>
                         <option value="novideo">외부링크 X</option>
                         <option value="false">영상 없음</option>
-                    </select>
+                    </select> -->
+                    <label>
+                        <input type="radio" name="video_type" value="nicovideo" checked>
+                        니코동
+                      </label>
+                      <label>
+                        <input type="radio" name="video_type" value="youtube">
+                        유튜브
+                      </label>
+                      <label>
+                        <input type="radio" name="video_type" value="novideo">
+                        외부링크 X
+                      </label>
+                      <label>
+                        <input type="radio" name="video_type" value="false">
+                        영상 없음
+                      </label>
                     <p>영상 아이디(링크 전체도 가능)</p>
                     <details>
                         <summary>예시</summary>

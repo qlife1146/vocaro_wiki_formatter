@@ -9,7 +9,7 @@
 
 window.onload = function () {
     //버전관리 부분
-    const version = "v1.11.1d"; //기능 롤백 및 유튜브 URL 주소 대응 추가
+    const version = "v1.12.0"; //기능 롤백 및 유튜브 URL 주소 대응 추가
     document.getElementById(
         "version"
     ).innerHTML = `<h4 class='version' id='version'>${version}</h4`;
@@ -121,7 +121,10 @@ function formatting_with_information() {
     const finish_textarea = document.getElementById("finish_textarea");
 
     let song_title_text = document.getElementById("song_title_textbox").value;
-    let video_type_text = document.getElementById("video_type_select").value;
+    // let video_type_text = document.getElementById("video_type_select").value;
+    let video_type_text = document.querySelector(
+        'input[name="video_type"]:checked'
+    ).value;
     let video_id_text = link_formatting();
     let composer_text = document.querySelectorAll(".composer_textbox");
     let writer_text = document.querySelectorAll(".writer_textbox");
@@ -135,6 +138,22 @@ function formatting_with_information() {
     } else {
         info_format += "|title=" + song_title_text + "\n";
     }
+    // if (video_type_text == "nicovideo" || video_type_text == "youtube") {
+    //     if (video_id_text == "") {
+    //         alert_list.push("영상 아이디 없음");
+    //     } else {
+    //         info_format +=
+    //             "|videotype=" +
+    //             video_type_text +
+    //             "\n" +
+    //             "|video-id=" +
+    //             video_id_text +
+    //             "\n" +
+    //             "]]\n";
+    //     }
+    // } else if (video_type_text == "novideo" || video_type_text == "false") {
+    //     info_format += "|videotype=" + video_type_text + "\n" + "]]\n";
+    // }
     if (video_type_text == "nicovideo" || video_type_text == "youtube") {
         if (video_id_text == "") {
             alert_list.push("영상 아이디 없음");
@@ -222,14 +241,16 @@ function reset() {
     const check = confirm("초기화 진행을 원하면 [확인]을 눌러주세요.");
 
     if (check) {
-        original.value = "";
-        finish.value = "";
-        spell.value = "";
-        title.value = "";
-        videoId.value = "";
-        composer.value = "";
-        writer.value = "";
-        vocaro.value = "";
+        location.reload();
+        window.scrollTo(0, 0);
+        // original.value = "";
+        // finish.value = "";
+        // spell.value = "";
+        // title.value = "";
+        // videoId.value = "";
+        // composer.value = "";
+        // writer.value = "";
+        // vocaro.value = "";
 
         // removeAllTextboxAndContainer("composer_div");
         // removeAllTextboxAndContainer("writer_div");
@@ -288,7 +309,10 @@ function rmv_textbox(parentId) {
 //영상 아이디 포매팅
 function link_formatting() {
     let link = document.getElementById("video_id_textbox").value;
-    let video_type_text = document.getElementById("video_type_select").value;
+    // let video_type_text = document.getElementById("video_type_select").value;
+    let video_type_text = document.querySelector(
+        'input[name="video_type"]:checked'
+    ).value;
 
     if (link !== "") {
         if (video_type_text == "nicovideo") {
@@ -320,6 +344,10 @@ function for_spell_check() {
     let original_list = original_text.split("\n"); //작성한 가사를 담은 리스트
     let result_list = remove_blank_line(original_list); //완성된 가사를 담을 리스트
     let spell_list = [];
+
+    if (spellCheck_textarea !== "") {
+        spellCheck_textarea.value = "";
+    }
 
     for (let i = 2; i < result_list.length; i += 3) {
         spell_list.push(result_list[i]);
