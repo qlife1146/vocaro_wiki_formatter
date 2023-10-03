@@ -9,18 +9,13 @@
 
 window.onload = function () {
     //버전관리 부분
-    const version = "v1.12.0"; //기능 롤백 및 유튜브 URL 주소 대응 추가
+    const version = "v1.12.1"; //
     document.getElementById(
         "version"
     ).innerHTML = `<h4 class='version' id='version'>${version}</h4`;
 
     //input_text의 display 여부
     document.getElementById("video_id_textbox").disabled = false;
-
-    const textarea = document.getElementById("spellCheck_textarea");
-    // textarea.addEventListener("input", function () {
-    //     formatting_with_information();
-    // });
 };
 
 //빈 줄 삭제
@@ -326,7 +321,10 @@ function link_formatting() {
                     link = link.replace(/&list=.*/, "");
                 }
                 if (link.includes("&index=")) {
-                    link = link.reaplce(/&index=.*/, "");
+                    link = link.replace(/&index=.*/, "");
+                }
+                if (link.includes("&t=")) {
+                    link = link.replace(/&t=.*/, "");
                 }
                 link = link.substring(link.lastIndexOf("v=") + 2);
             } else {
